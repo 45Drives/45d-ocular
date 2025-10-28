@@ -107,6 +107,7 @@ CenteredGridView {
     model: computerModel
 
     delegate: NavigableItemDelegate {
+        id: cell
         width: 300; height: 320;
         grid: pcGrid
 
@@ -115,7 +116,7 @@ CenteredGridView {
         Image {
             id: pcIcon
             anchors.horizontalCenter: parent.horizontalCenter
-            source: "qrc:/res/desktop_windows-48px.svg"
+            source: (Material.theme !== Material.Dark) ? "qrc:/res/desktop_windows-48px-dark.svg" : "qrc:/res/desktop_windows-48px.svg"
             sourceSize {
                 width: 200
                 height: 200
@@ -129,7 +130,9 @@ CenteredGridView {
             anchors.verticalCenter: pcIcon.verticalCenter
             anchors.verticalCenterOffset: !model.online ? -18 : -16
             visible: !model.statusUnknown && (!model.online || !model.paired)
-            source: !model.online ? "qrc:/res/warning_FILL1_wght300_GRAD200_opsz24.svg" : "qrc:/res/baseline-lock-24px.svg"
+            source: !model.online ?
+                        ((Material.theme !== Material.Dark) ? "qrc:/res/warning_FILL1_wght300_GRAD200_opsz24-dark.svg" : "qrc:/res/warning_FILL1_wght300_GRAD200_opsz24.svg") :
+                        ((Material.theme !== Material.Dark) ? "qrc:/res/baseline-lock-24px-dark.svg" : "qrc:/res/baseline-lock-24px.svg")
             sourceSize {
                 width: !model.online ? 75 : 70
                 height: !model.online ? 75 : 70
