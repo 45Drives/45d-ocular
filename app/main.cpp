@@ -330,8 +330,8 @@ int main(int argc, char *argv[])
     // Set these here to allow us to use the default QSettings constructor.
     // These also ensure that our cache directory is named correctly. As such,
     // it is critical that these be called before Path::initialize().
-    QCoreApplication::setOrganizationName("Occular Game Streaming Project");
-    QCoreApplication::setOrganizationDomain("moonlight-stream.com");
+    QCoreApplication::setOrganizationName("Occular Project");
+    QCoreApplication::setOrganizationDomain("45drives.com");
     QCoreApplication::setApplicationName("Occular");
 
     if (QFile(QDir::currentPath() + "/portable.dat").exists()) {
