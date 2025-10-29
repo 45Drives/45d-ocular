@@ -227,8 +227,8 @@
     </message>
     <message>
         <location filename="../gui/PcView.qml" line="66"/>
-        <source>This PC&apos;s Internet connection is blocking Occular. Streaming over the Internet may not work while connected to this network.</source>
-        <translation>La conexión a Internet de este PC está bloqueando Occular. Es posible que la transmisión por Internet no funcione mientras esté conectado a esta red.</translation>
+        <source>This PC&apos;s Internet connection is blocking Ocular. Streaming over the Internet may not work while connected to this network.</source>
+        <translation>La conexión a Internet de este PC está bloqueando Ocular. Es posible que la transmisión por Internet no funcione mientras esté conectado a esta red.</translation>
     </message>
     <message>
         <location filename="../gui/PcView.qml" line="69"/>
@@ -272,8 +272,8 @@
     </message>
     <message>
         <location filename="../gui/PcView.qml" line="228"/>
-        <source>The version of GeForce Experience on %1 is not supported by this build of Occular. You must update Occular to stream from %1.</source>
-        <translation>La versión de GeForce Experience en %1 no es compatible con esta versión de Occular. Debes actualizar Occular para transmitir desde %1.</translation>
+        <source>The version of GeForce Experience on %1 is not supported by this build of Ocular. You must update Ocular to stream from %1.</source>
+        <translation>La versión de GeForce Experience en %1 no es compatible con esta versión de Ocular. Debes actualizar Ocular para transmitir desde %1.</translation>
     </message>
     <message>
         <location filename="../gui/PcView.qml" line="331"/>
@@ -282,18 +282,18 @@
     </message>
     <message>
         <location filename="../gui/PcView.qml" line="342"/>
-        <source>This network does not appear to be blocking Occular. If you still have trouble connecting, check your PC&apos;s firewall settings.</source>
-        <translation>Esta red no parece estar bloqueando Occular. Si sigue teniendo problemas para conectarse, compruebe la configuración del cortafuegos de su PC.</translation>
+        <source>This network does not appear to be blocking Ocular. If you still have trouble connecting, check your PC&apos;s firewall settings.</source>
+        <translation>Esta red no parece estar bloqueando Ocular. Si sigue teniendo problemas para conectarse, compruebe la configuración del cortafuegos de su PC.</translation>
     </message>
     <message>
         <location filename="../gui/PcView.qml" line="342"/>
-        <source>If you are trying to stream over the Internet, install the Occular Internet Hosting Tool on your gaming PC and run the included Internet Streaming Tester to check your gaming PC&apos;s Internet connection.</source>
-        <translation>Si estás intentando hacer streaming a través de Internet, instala la herramienta Occular Internet Hosting Tool en tu PC de juegos y ejecuta el comprobador de streaming por Internet incluido para comprobar la conexión a Internet de tu PC de juegos.</translation>
+        <source>If you are trying to stream over the Internet, install the Ocular Internet Hosting Tool on your gaming PC and run the included Internet Streaming Tester to check your gaming PC&apos;s Internet connection.</source>
+        <translation>Si estás intentando hacer streaming a través de Internet, instala la herramienta Ocular Internet Hosting Tool en tu PC de juegos y ejecuta el comprobador de streaming por Internet incluido para comprobar la conexión a Internet de tu PC de juegos.</translation>
     </message>
     <message>
         <location filename="../gui/PcView.qml" line="346"/>
-        <source>Your PC&apos;s current network connection seems to be blocking Occular. Streaming over the Internet may not work while connected to this network.</source>
-        <translation>La conexión de red actual de tu PC parece estar bloqueando Occular. Es posible que la transmisión por Internet no funcione mientras esté conectado a esta red.</translation>
+        <source>Your PC&apos;s current network connection seems to be blocking Ocular. Streaming over the Internet may not work while connected to this network.</source>
+        <translation>La conexión de red actual de tu PC parece estar bloqueando Ocular. Es posible que la transmisión por Internet no funcione mientras esté conectado a esta red.</translation>
     </message>
     <message>
         <location filename="../gui/PcView.qml" line="346"/>
@@ -302,8 +302,8 @@
     </message>
     <message>
         <location filename="../gui/PcView.qml" line="338"/>
-        <source>The network test could not be performed because none of Occular&apos;s connection testing servers were reachable from this PC. Check your Internet connection or try again later.</source>
-        <translation>La prueba de red no pudo realizarse porque ninguno de los servidores de prueba de conexión de Occular era accesible desde este PC. Compruebe su conexión a Internet o inténtelo de nuevo más tarde.</translation>
+        <source>The network test could not be performed because none of Ocular&apos;s connection testing servers were reachable from this PC. Check your Internet connection or try again later.</source>
+        <translation>La prueba de red no pudo realizarse porque ninguno de los servidores de prueba de conexión de Ocular era accesible desde este PC. Compruebe su conexión a Internet o inténtelo de nuevo más tarde.</translation>
     </message>
     <message>
         <location filename="../gui/PcView.qml" line="167"/>
@@ -342,8 +342,8 @@
     </message>
     <message>
         <location filename="../gui/PcView.qml" line="331"/>
-        <source>Occular is testing your network connection to determine if any required ports are blocked.</source>
-        <translation>Occular está probando tu conexión de red para determinar si algún puerto necesario está bloqueado.</translation>
+        <source>Ocular is testing your network connection to determine if any required ports are blocked.</source>
+        <translation>Ocular está probando tu conexión de red para determinar si algún puerto necesario está bloqueado.</translation>
     </message>
     <message>
         <location filename="../gui/PcView.qml" line="358"/>
@@ -404,8 +404,8 @@
     <message>
         <location filename="../cli/quitstream.cpp" line="88"/>
         <location filename="../cli/startstream.cpp" line="89"/>
-        <source>Computer %1 has not been paired. Please open Occular to pair before streaming.</source>
-        <translation>El ordenador %1 no ha sido emparejado. Por favor, abra Occular para emparejar antes de transmitir.</translation>
+        <source>Computer %1 has not been paired. Please open Ocular to pair before streaming.</source>
+        <translation>El ordenador %1 no ha sido emparejado. Por favor, abra Ocular para emparejar antes de transmitir.</translation>
     </message>
     <message>
         <location filename="../cli/quitstream.cpp" line="102"/>
@@ -420,8 +420,8 @@
     </message>
     <message>
         <location filename="../cli/listapps.cpp" line="108"/>
-        <source>Computer %1 has not been paired. Please open Occular to pair before retrieving games list.</source>
-        <translation>El PC %1 no se ha emparejado. Por favor abra Occular para emparejar antes de obtener la lista de juegos.</translation>
+        <source>Computer %1 has not been paired. Please open Ocular to pair before retrieving games list.</source>
+        <translation>El PC %1 no se ha emparejado. Por favor abra Ocular para emparejar antes de obtener la lista de juegos.</translation>
     </message>
 </context>
 <context>
@@ -509,8 +509,8 @@
     </message>
     <message>
         <location filename="../streaming/session.cpp" line="968"/>
-        <source>The version of GeForce Experience on %1 is not supported by this build of Occular. You must update Occular to stream from %1.</source>
-        <translation>La versión de GeForce Experience en %1 no es compatible con esta versión de Occular. Debes actualizar Occular para transmitir desde %1.</translation>
+        <source>The version of GeForce Experience on %1 is not supported by this build of Ocular. You must update Ocular to stream from %1.</source>
+        <translation>La versión de GeForce Experience en %1 no es compatible con esta versión de Ocular. Debes actualizar Ocular para transmitir desde %1.</translation>
     </message>
     <message>
         <location filename="../streaming/session.cpp" line="973"/>
@@ -644,8 +644,8 @@
     </message>
     <message>
         <location filename="../streaming/session.cpp" line="1185"/>
-        <source>An attached gamepad has no mapping and won&apos;t be usable. Visit the Occular help to resolve this.</source>
-        <translation>Un mando conectado no tiene mapeo y no será utilizable. Visita la ayuda de Occular para resolver esto.</translation>
+        <source>An attached gamepad has no mapping and won&apos;t be usable. Visit the Ocular help to resolve this.</source>
+        <translation>Un mando conectado no tiene mapeo y no será utilizable. Visita la ayuda de Ocular para resolver esto.</translation>
     </message>
     <message>
         <location filename="../streaming/session.cpp" line="1203"/>
@@ -844,13 +844,13 @@
     </message>
     <message>
         <location filename="../gui/SettingsView.qml" line="929"/>
-        <source>Mute audio stream when Occular is not the active window</source>
-        <translation>Silenciar el flujo de audio cuando Occular no es la ventana activa</translation>
+        <source>Mute audio stream when Ocular is not the active window</source>
+        <translation>Silenciar el flujo de audio cuando Ocular no es la ventana activa</translation>
     </message>
     <message>
         <location filename="../gui/SettingsView.qml" line="940"/>
-        <source>Mutes Occular&apos;s audio when you Alt+Tab out of the stream or click on a different window.</source>
-        <translation>Silencia el audio de Occular cuando haces Alt+Tab fuera de la transmisión o haces clic en una ventana diferente.</translation>
+        <source>Mutes Ocular&apos;s audio when you Alt+Tab out of the stream or click on a different window.</source>
+        <translation>Silencia el audio de Ocular cuando haces Alt+Tab fuera de la transmisión o haces clic en una ventana diferente.</translation>
     </message>
     <message>
         <location filename="../gui/SettingsView.qml" line="989"/>
@@ -869,8 +869,8 @@
     </message>
     <message>
         <location filename="../gui/SettingsView.qml" line="1160"/>
-        <source>You must restart Occular for this change to take effect</source>
-        <translation>Debe reiniciar Occular para que este cambio surta efecto</translation>
+        <source>You must restart Ocular for this change to take effect</source>
+        <translation>Debe reiniciar Ocular para que este cambio surta efecto</translation>
     </message>
     <message>
         <location filename="../gui/SettingsView.qml" line="1177"/>
@@ -948,8 +948,8 @@
     </message>
     <message>
         <location filename="../gui/SettingsView.qml" line="1340"/>
-        <source>NOTE: Certain keyboard shortcuts like Ctrl+Alt+Del on Windows cannot be intercepted by any application, including Occular.</source>
-        <translation>NOTA: Ciertos atajos de teclado como Ctrl+Alt+Supr en Windows no pueden ser interceptados por ninguna aplicación, incluyendo Occular.</translation>
+        <source>NOTE: Certain keyboard shortcuts like Ctrl+Alt+Del on Windows cannot be intercepted by any application, including Ocular.</source>
+        <translation>NOTA: Ciertos atajos de teclado como Ctrl+Alt+Supr en Windows no pueden ser interceptados por ninguna aplicación, incluyendo Ocular.</translation>
     </message>
     <message>
         <location filename="../gui/SettingsView.qml" line="1403"/>
@@ -1003,13 +1003,13 @@
     </message>
     <message>
         <location filename="../gui/SettingsView.qml" line="1501"/>
-        <source>Process gamepad input when Occular is in the background</source>
-        <translation>Procesar la entrada del mando cuando Occular está en segundo plano</translation>
+        <source>Process gamepad input when Ocular is in the background</source>
+        <translation>Procesar la entrada del mando cuando Ocular está en segundo plano</translation>
     </message>
     <message>
         <location filename="../gui/SettingsView.qml" line="1512"/>
-        <source>Allows Occular to capture gamepad inputs even if it&apos;s not the current window in focus</source>
-        <translation>Permite a Occular capturar las entradas del mando incluso si no es la ventana actual</translation>
+        <source>Allows Ocular to capture gamepad inputs even if it&apos;s not the current window in focus</source>
+        <translation>Permite a Ocular capturar las entradas del mando incluso si no es la ventana actual</translation>
     </message>
     <message>
         <location filename="../gui/SettingsView.qml" line="949"/>
@@ -1226,8 +1226,8 @@
     </message>
     <message>
         <location filename="../gui/StreamSegue.qml" line="76"/>
-        <source>This PC&apos;s Internet connection is blocking Occular. Streaming over the Internet may not work while connected to this network.</source>
-        <translation>La conexión a Internet de este PC está bloqueando Occular. Es posible que la transmisión por Internet no funcione mientras esté conectado a esta red.</translation>
+        <source>This PC&apos;s Internet connection is blocking Ocular. Streaming over the Internet may not work while connected to this network.</source>
+        <translation>La conexión a Internet de este PC está bloqueando Ocular. Es posible que la transmisión por Internet no funcione mientras esté conectado a esta red.</translation>
     </message>
     <message>
         <location filename="../gui/StreamSegue.qml" line="167"/>
@@ -1274,8 +1274,8 @@
     </message>
     <message>
         <location filename="../gui/main.qml" line="364"/>
-        <source>Update available for Occular: Version %1</source>
-        <translation>Actualización disponible para Occular: versión %1</translation>
+        <source>Update available for Ocular: Version %1</source>
+        <translation>Actualización disponible para Ocular: versión %1</translation>
     </message>
     <message>
         <location filename="../gui/main.qml" line="411"/>
@@ -1289,13 +1289,13 @@
     </message>
     <message>
         <location filename="../gui/main.qml" line="466"/>
-        <source>This version of Occular isn&apos;t optimized for your PC. Please download the &apos;%1&apos; version of Occular for the best streaming performance.</source>
-        <translation>Esta versión de Occular no está optimizada para tu PC. Por favor, descargue la versión &apos;%1&apos; de Occular para obtener el mejor rendimiento de streaming.</translation>
+        <source>This version of Ocular isn&apos;t optimized for your PC. Please download the &apos;%1&apos; version of Ocular for the best streaming performance.</source>
+        <translation>Esta versión de Ocular no está optimizada para tu PC. Por favor, descargue la versión &apos;%1&apos; de Ocular para obtener el mejor rendimiento de streaming.</translation>
     </message>
     <message>
         <location filename="../gui/main.qml" line="475"/>
-        <source>Occular detected gamepads without a mapping:</source>
-        <translation>Occular detectó mandos sin mapeo:</translation>
+        <source>Ocular detected gamepads without a mapping:</source>
+        <translation>Ocular detectó mandos sin mapeo:</translation>
     </message>
     <message>
         <location filename="../gui/main.qml" line="388"/>
@@ -1304,8 +1304,8 @@
     </message>
     <message>
         <location filename="../gui/main.qml" line="449"/>
-        <source>No functioning hardware accelerated video decoder was detected by Occular. Your streaming performance may be severely degraded in this configuration.</source>
-        <translation>Occular no ha detectado ningún decodificador de vídeo acelerado por hardware que funcione. El rendimiento de la transmisión puede verse gravemente degradado con esta configuración.</translation>
+        <source>No functioning hardware accelerated video decoder was detected by Ocular. Your streaming performance may be severely degraded in this configuration.</source>
+        <translation>Ocular no ha detectado ningún decodificador de vídeo acelerado por hardware que funcione. El rendimiento de la transmisión puede verse gravemente degradado con esta configuración.</translation>
     </message>
     <message>
         <location filename="../gui/main.qml" line="451"/>

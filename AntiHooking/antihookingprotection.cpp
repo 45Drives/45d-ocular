@@ -172,10 +172,10 @@ private:
         // 02 0000004e`496ff900 00007ffa`23f4dd75 d3d9!CSwapChain::PresentMain+0x3e13e
         // 03 0000004e`496ffab0 00007ffa`23f4dccd d3d9!CBaseDevice::PresentMain+0x9d
         // 04 0000004e`496ffb00 00007ff7`8e31016f d3d9!CBaseDevice::PresentEx+0xbd
-        // 05 0000004e`496ffb50 00007ff7`8e30df1e Occular!DXVA2Renderer::renderFrame+0x61f [C:\moonlight-qt\app\streaming\video\ffmpeg-renderers\dxva2.cpp @ 1035]
-        // 06 0000004e`496ffd50 00007ff7`8e30e46a Occular!Pacer::renderFrame+0x3e [C:\moonlight-qt\app\streaming\video\ffmpeg-renderers\pacer\pacer.cpp @ 265]
-        // 07 (Inline Function) --------`-------- Occular!Pacer::renderLastFrameAndUnlock+0x197 [C:\moonlight-qt\app\streaming\video\ffmpeg-renderers\pacer\pacer.cpp @ 156]
-        // 08 0000004e`496ffda0 00007ffa`14476978 Occular!Pacer::renderThread+0x1ca [C:\moonlight-qt\app\streaming\video\ffmpeg-renderers\pacer\pacer.cpp @ 88]
+        // 05 0000004e`496ffb50 00007ff7`8e30df1e Ocular!DXVA2Renderer::renderFrame+0x61f [C:\moonlight-qt\app\streaming\video\ffmpeg-renderers\dxva2.cpp @ 1035]
+        // 06 0000004e`496ffd50 00007ff7`8e30e46a Ocular!Pacer::renderFrame+0x3e [C:\moonlight-qt\app\streaming\video\ffmpeg-renderers\pacer\pacer.cpp @ 265]
+        // 07 (Inline Function) --------`-------- Ocular!Pacer::renderLastFrameAndUnlock+0x197 [C:\moonlight-qt\app\streaming\video\ffmpeg-renderers\pacer\pacer.cpp @ 156]
+        // 08 0000004e`496ffda0 00007ffa`14476978 Ocular!Pacer::renderThread+0x1ca [C:\moonlight-qt\app\streaming\video\ffmpeg-renderers\pacer\pacer.cpp @ 88]
         // 09 0000004e`496ffde0 00007ffa`14476ee2 SDL2!SDL_RunThread+0x38 [C:\Users\camer\SDL\src\thread\SDL_thread.c @ 276]
         // 0a 0000004e`496ffe10 00007ffa`2aae0e82 SDL2!RunThread+0x12 [C:\Users\camer\SDL\src\thread\windows\SDL_systhread.c @ 83]
         // 0b 0000004e`496ffe40 00007ffa`2d627bd4 ucrtbase!thread_start<unsigned int (__cdecl*)(void *),1>+0x42
@@ -215,15 +215,15 @@ private:
         // bdcamvk64+0x10b73
         // libplacebo_357!vk_sw_destroy+0x14f [D:\a\moonlight-deps\moonlight-deps\libplacebo\src\vulkan\swapchain.c @ 460]
         // libplacebo_357!pl_swapchain_destroy+0x1a [D:\a\moonlight-deps\moonlight-deps\libplacebo\src\swapchain.c @ 30]
-        // Occular!PlVkRenderer::~PlVkRenderer+0x159 [D:\a\moonlight-qt\app\streaming\video\ffmpeg-renderers\plvk.cpp @ 140]
-        // Occular!PlVkRenderer::`scalar deleting destructor'+0x17
-        // Occular!FFmpegVideoDecoder::reset+0x203 [D:\a\moonlight-qt\app\streaming\video\ffmpeg.cpp @ 301]
-        // Occular!FFmpegVideoDecoder::~FFmpegVideoDecoder+0x22 [D:\a\moonlight-qt\app\streaming\video\ffmpeg.cpp @ 257]
-        // Occular!FFmpegVideoDecoder::`scalar deleting destructor'+0x17
-        // Occular!Session::getDecoderInfo+0x19a [D:\a\moonlight-qt\app\streaming\session.cpp @ 415]
-        // Occular!SystemProperties::querySdlVideoInfoInternal+0x134 [D:\a\moonlight-qt\app\backend\systemproperties.cpp @ 161]
-        // Occular!SystemProperties::querySdlVideoInfo+0x97 [D:\a\moonlight-qt\app\backend\systemproperties.cpp @ 123]
-        // Occular!SystemProperties::SystemProperties+0x4bf [D:\a\moonlight-qt\app\backend\systemproperties.cpp @ 75]
+        // Ocular!PlVkRenderer::~PlVkRenderer+0x159 [D:\a\moonlight-qt\app\streaming\video\ffmpeg-renderers\plvk.cpp @ 140]
+        // Ocular!PlVkRenderer::`scalar deleting destructor'+0x17
+        // Ocular!FFmpegVideoDecoder::reset+0x203 [D:\a\moonlight-qt\app\streaming\video\ffmpeg.cpp @ 301]
+        // Ocular!FFmpegVideoDecoder::~FFmpegVideoDecoder+0x22 [D:\a\moonlight-qt\app\streaming\video\ffmpeg.cpp @ 257]
+        // Ocular!FFmpegVideoDecoder::`scalar deleting destructor'+0x17
+        // Ocular!Session::getDecoderInfo+0x19a [D:\a\moonlight-qt\app\streaming\session.cpp @ 415]
+        // Ocular!SystemProperties::querySdlVideoInfoInternal+0x134 [D:\a\moonlight-qt\app\backend\systemproperties.cpp @ 161]
+        // Ocular!SystemProperties::querySdlVideoInfo+0x97 [D:\a\moonlight-qt\app\backend\systemproperties.cpp @ 123]
+        // Ocular!SystemProperties::SystemProperties+0x4bf [D:\a\moonlight-qt\app\backend\systemproperties.cpp @ 75]
         //
         // https://github.com/moonlight-stream/moonlight-qt/issues/1425
         // https://github.com/moonlight-stream/moonlight-qt/issues/1579

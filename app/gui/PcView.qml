@@ -73,7 +73,7 @@ Item {
         if (!success) {
             errorDialog.text = qsTr("Unable to connect to the specified PC.")
             if (detectedPortBlocking) {
-                errorDialog.text += "\n\n" + qsTr("This PC's Internet connection is blocking Occular. Streaming over the Internet may not work while connected to this network.")
+                errorDialog.text += "\n\n" + qsTr("This PC's Internet connection is blocking Ocular. Streaming over the Internet may not work while connected to this network.")
             } else {
                 errorDialog.helpText = qsTr("Click the Help button for possible solutions.")
             }
@@ -340,7 +340,7 @@ Item {
                                 enabled: model.online && !model.paired && !model.statusUnknown
                                 onTriggered: {
                                     if (!model.serverSupported) {
-                                        errorDialog.text = qsTr("The version of GeForce Experience on %1 is not supported by this build of Occular. You must update Occular to stream from %1.").arg(model.name)
+                                        errorDialog.text = qsTr("The version of GeForce Experience on %1 is not supported by this build of Ocular. You must update Ocular to stream from %1.").arg(model.name)
                                         errorDialog.helpText = ""
                                         errorDialog.open()
                                     } else if (model.paired) {
@@ -440,7 +440,7 @@ Item {
         standardButtons: Dialog.Ok
 
         onAboutToShow: {
-            testConnectionDialog.text = qsTr("Occular is testing your network connection to determine if any required ports are blocked.") + "\n\n" + qsTr("This may take a few seconds…")
+            testConnectionDialog.text = qsTr("Ocular is testing your network connection to determine if any required ports are blocked.") + "\n\n" + qsTr("This may take a few seconds…")
             showSpinner = true
         }
 
@@ -472,15 +472,15 @@ Item {
 
         function connectionTestComplete(result, blockedPorts) {
             if (result === -1) {
-                text = qsTr("The network test could not be performed because none of Occular's connection testing servers were reachable from this PC. Check your Internet connection or try again later.")
+                text = qsTr("The network test could not be performed because none of Ocular's connection testing servers were reachable from this PC. Check your Internet connection or try again later.")
                 imageSrc = (Material.theme !== Material.Dark) ? "qrc:/res/baseline-warning-24px-dark.svg" : "qrc:/res/baseline-warning-24px.svg"
             }
             else if (result === 0) {
-                text = qsTr("This network does not appear to be blocking Occular. If you still have trouble connecting, check your PC's firewall settings.") + "\n\n" + qsTr("If you are trying to stream over the Internet, install the Occular Internet Hosting Tool on your gaming PC and run the included Internet Streaming Tester to check your gaming PC's Internet connection.")
+                text = qsTr("This network does not appear to be blocking Ocular. If you still have trouble connecting, check your PC's firewall settings.") + "\n\n" + qsTr("If you are trying to stream over the Internet, install the Ocular Internet Hosting Tool on your gaming PC and run the included Internet Streaming Tester to check your gaming PC's Internet connection.")
                 imageSrc = (Material.theme !== Material.Dark) ? "qrc:/res/baseline-check_circle_outline-24px-dark.svg" : "qrc:/res/baseline-check_circle_outline-24px.svg"
             }
             else {
-                text = qsTr("Your PC's current network connection seems to be blocking Occular. Streaming over the Internet may not work while connected to this network.") + "\n\n" + qsTr("The following network ports were blocked:") + "\n"
+                text = qsTr("Your PC's current network connection seems to be blocking Ocular. Streaming over the Internet may not work while connected to this network.") + "\n\n" + qsTr("The following network ports were blocked:") + "\n"
                 text += blockedPorts
                 imageSrc = (Material.theme !== Material.Dark) ? "qrc:/res/baseline-error_outline-24px-dark.svg" : "qrc:/res/baseline-error_outline-24px.svg"
             }

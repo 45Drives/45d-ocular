@@ -1,10 +1,10 @@
-# Moonlight PC
+# Ocular PC
 
-[Moonlight PC](https://moonlight-stream.org) is an open source PC client for NVIDIA GameStream and [Sunshine](https://github.com/LizardByte/Sunshine).
+[Ocular PC](https://moonlight-stream.org) is an open source PC client for NVIDIA GameStream and [Sunshine](https://github.com/LizardByte/Sunshine).
 
-Moonlight also has mobile versions for [Android](https://github.com/moonlight-stream/moonlight-android) and [iOS](https://github.com/moonlight-stream/moonlight-ios).
+Ocular also has mobile versions for [Android](https://github.com/moonlight-stream/moonlight-android) and [iOS](https://github.com/moonlight-stream/moonlight-ios).
 
-You can follow development on our [Discord server](https://moonlight-stream.org/discord) and help translate Moonlight into your language on [Weblate](https://hosted.weblate.org/projects/moonlight/moonlight-qt/).
+You can follow development on our [Discord server](https://moonlight-stream.org/discord) and help translate Ocular into your language on [Weblate](https://hosted.weblate.org/projects/moonlight/moonlight-qt/).
 
  [![Build](https://img.shields.io/github/actions/workflow/status/moonlight-stream/moonlight-qt/build.yml?branch=master)](https://github.com/moonlight-stream/moonlight-qt/actions/workflows/build.yml?query=branch%3Amaster)
  [![Downloads](https://img.shields.io/github/downloads/moonlight-stream/moonlight-qt/total)](https://github.com/moonlight-stream/moonlight-qt/releases)
@@ -24,12 +24,12 @@ You can follow development on our [Discord server](https://moonlight-stream.org/
 ## Downloads
 - [Windows, macOS, and Steam Link](https://github.com/moonlight-stream/moonlight-qt/releases)
 - [Snap (for Ubuntu-based Linux distros)](https://snapcraft.io/moonlight)
-- [Flatpak (for other Linux distros)](https://flathub.org/apps/details/com.moonlight_stream.Moonlight)
+- [Flatpak (for other Linux distros)](https://flathub.org/apps/details/com.moonlight_stream.Ocular)
 - [AppImage](https://github.com/moonlight-stream/moonlight-qt/releases)
-- [Raspberry Pi 4 and 5](https://github.com/moonlight-stream/moonlight-docs/wiki/Installing-Moonlight-Qt-on-Raspberry-Pi-4)
-- [Generic ARM 32-bit and 64-bit Debian packages](https://github.com/moonlight-stream/moonlight-docs/wiki/Installing-Moonlight-Qt-on-ARM%E2%80%90based-Single-Board-Computers) (not for Raspberry Pi)
-- [Experimental RISC-V Debian packages](https://github.com/moonlight-stream/moonlight-docs/wiki/Installing-Moonlight-Qt-on-RISC%E2%80%90V-Single-Board-Computers)
-- [NVIDIA Jetson and Nintendo Switch (Ubuntu L4T)](https://github.com/moonlight-stream/moonlight-docs/wiki/Installing-Moonlight-Qt-on-Linux4Tegra-(L4T)-Ubuntu)
+- [Raspberry Pi 4 and 5](https://github.com/moonlight-stream/moonlight-docs/wiki/Installing-Ocular-Qt-on-Raspberry-Pi-4)
+- [Generic ARM 32-bit and 64-bit Debian packages](https://github.com/moonlight-stream/moonlight-docs/wiki/Installing-Ocular-Qt-on-ARM%E2%80%90based-Single-Board-Computers) (not for Raspberry Pi)
+- [Experimental RISC-V Debian packages](https://github.com/moonlight-stream/moonlight-docs/wiki/Installing-Ocular-Qt-on-RISC%E2%80%90V-Single-Board-Computers)
+- [NVIDIA Jetson and Nintendo Switch (Ubuntu L4T)](https://github.com/moonlight-stream/moonlight-docs/wiki/Installing-Ocular-Qt-on-Linux4Tegra-(L4T)-Ubuntu)
 
 ### Nightly Builds
 - [Downloads](https://nightly.link/moonlight-stream/moonlight-qt/workflows/build/master)
@@ -38,7 +38,7 @@ You can follow development on our [Discord server](https://moonlight-stream.org/
 
 [![Hosted By: Cloudsmith](https://img.shields.io/badge/OSS%20hosting%20by-cloudsmith-blue?logo=cloudsmith&style=flat-square)](https://cloudsmith.com)
 
-Hosting for Moonlight's Debian and L4T package repositories is graciously provided for free by [Cloudsmith](https://cloudsmith.com).
+Hosting for Ocular's Debian and L4T package repositories is graciously provided for free by [Cloudsmith](https://cloudsmith.com).
 
 ## Building
 
@@ -76,7 +76,7 @@ Hosting for Moonlight's Debian and L4T package repositories is graciously provid
 * STEAMLINK_SDK_PATH environment variable set to the Steam Link SDK path
 
 **Steam Link Hardware Limitations**  
-Moonlight builds for Steam Link are subject to hardware limitations of the Steam Link device:
+Ocular builds for Steam Link are subject to hardware limitations of the Steam Link device:
 * Maximum resolution: **1080p (1920x1080)**
 * Maximum framerate: **60 FPS**
 * Maximum video bitrate: **40 Mbps**
@@ -84,7 +84,7 @@ Moonlight builds for Steam Link are subject to hardware limitations of the Steam
 
 ### Build Setup Steps
 1. Install the latest Qt SDK (and optionally, the Qt Creator IDE) from https://www.qt.io/download
-    * You can install Qt via Homebrew on macOS, but you will need to use `brew install qt --with-debug` to be able to create debug builds of Moonlight.
+    * You can install Qt via Homebrew on macOS, but you will need to use `brew install qt --with-debug` to be able to create debug builds of Ocular.
     * You may also use your Linux distro's package manager for the Qt SDK as long as the packages are Qt 5.12 or later.
     * This step is not required for building on Steam Link, because the Steam Link SDK includes Qt 5.14.
 2. Run `git submodule update --init --recursive` from within `moonlight-qt/`

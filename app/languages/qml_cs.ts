@@ -227,8 +227,8 @@
     </message>
     <message>
         <location filename="../gui/PcView.qml" line="66"/>
-        <source>This PC&apos;s Internet connection is blocking Occular. Streaming over the Internet may not work while connected to this network.</source>
-        <translation>Internetové připojení tohoto počítače blokuje Occular. Streamování přes internet nemusí fungovat, dokud jste připojeni k této síti.</translation>
+        <source>This PC&apos;s Internet connection is blocking Ocular. Streaming over the Internet may not work while connected to this network.</source>
+        <translation>Internetové připojení tohoto počítače blokuje Ocular. Streamování přes internet nemusí fungovat, dokud jste připojeni k této síti.</translation>
     </message>
     <message>
         <location filename="../gui/PcView.qml" line="69"/>
@@ -272,8 +272,8 @@
     </message>
     <message>
         <location filename="../gui/PcView.qml" line="228"/>
-        <source>The version of GeForce Experience on %1 is not supported by this build of Occular. You must update Occular to stream from %1.</source>
-        <translation>Verze GeForce Experience na %1 není touto verzí Occularu podporována. Abyste mohli streamovat z %1, musíte aktualizovat Occular na novější verzi.</translation>
+        <source>The version of GeForce Experience on %1 is not supported by this build of Ocular. You must update Ocular to stream from %1.</source>
+        <translation>Verze GeForce Experience na %1 není touto verzí Ocularu podporována. Abyste mohli streamovat z %1, musíte aktualizovat Ocular na novější verzi.</translation>
     </message>
     <message>
         <location filename="../gui/PcView.qml" line="331"/>
@@ -282,18 +282,18 @@
     </message>
     <message>
         <location filename="../gui/PcView.qml" line="342"/>
-        <source>This network does not appear to be blocking Occular. If you still have trouble connecting, check your PC&apos;s firewall settings.</source>
-        <translation>Nevypadá to, že by vaše síť blokovala Occular. Pokud máte pořád potíže s připojením, zkontrolujte nastavení firewallu vašeho počítače.</translation>
+        <source>This network does not appear to be blocking Ocular. If you still have trouble connecting, check your PC&apos;s firewall settings.</source>
+        <translation>Nevypadá to, že by vaše síť blokovala Ocular. Pokud máte pořád potíže s připojením, zkontrolujte nastavení firewallu vašeho počítače.</translation>
     </message>
     <message>
         <location filename="../gui/PcView.qml" line="342"/>
-        <source>If you are trying to stream over the Internet, install the Occular Internet Hosting Tool on your gaming PC and run the included Internet Streaming Tester to check your gaming PC&apos;s Internet connection.</source>
-        <translation>Pokud se pokoušíte streamovat po internetu, nainstalujte Occular Internet Hosting Tool na váš herní počítač a spusťte nástroj Internet Streaming Tester pro kontrolu připojení vašeho herního počítače k internetu.</translation>
+        <source>If you are trying to stream over the Internet, install the Ocular Internet Hosting Tool on your gaming PC and run the included Internet Streaming Tester to check your gaming PC&apos;s Internet connection.</source>
+        <translation>Pokud se pokoušíte streamovat po internetu, nainstalujte Ocular Internet Hosting Tool na váš herní počítač a spusťte nástroj Internet Streaming Tester pro kontrolu připojení vašeho herního počítače k internetu.</translation>
     </message>
     <message>
         <location filename="../gui/PcView.qml" line="346"/>
-        <source>Your PC&apos;s current network connection seems to be blocking Occular. Streaming over the Internet may not work while connected to this network.</source>
-        <translation>Vypadá to, že vaše současná síť blokuje Occular. Streamování přes internet nemusí fungovat, zatímco jste k této síti připojeni.</translation>
+        <source>Your PC&apos;s current network connection seems to be blocking Ocular. Streaming over the Internet may not work while connected to this network.</source>
+        <translation>Vypadá to, že vaše současná síť blokuje Ocular. Streamování přes internet nemusí fungovat, zatímco jste k této síti připojeni.</translation>
     </message>
     <message>
         <location filename="../gui/PcView.qml" line="346"/>
@@ -302,8 +302,8 @@
     </message>
     <message>
         <location filename="../gui/PcView.qml" line="338"/>
-        <source>The network test could not be performed because none of Occular&apos;s connection testing servers were reachable from this PC. Check your Internet connection or try again later.</source>
-        <translation>Test sítě se nemohl provést, protože Occular se nemůže připojit k žádnému z testovacích serverů. Zkontrolujte, že jste připojeni k internetu a zkuste to znovu.</translation>
+        <source>The network test could not be performed because none of Ocular&apos;s connection testing servers were reachable from this PC. Check your Internet connection or try again later.</source>
+        <translation>Test sítě se nemohl provést, protože Ocular se nemůže připojit k žádnému z testovacích serverů. Zkontrolujte, že jste připojeni k internetu a zkuste to znovu.</translation>
     </message>
     <message>
         <location filename="../gui/PcView.qml" line="167"/>
@@ -342,8 +342,8 @@
     </message>
     <message>
         <location filename="../gui/PcView.qml" line="331"/>
-        <source>Occular is testing your network connection to determine if any required ports are blocked.</source>
-        <translation>Occular testuje vaše síťové spojení aby otestoval, jestli jsou některé potřebné porty blokovány.</translation>
+        <source>Ocular is testing your network connection to determine if any required ports are blocked.</source>
+        <translation>Ocular testuje vaše síťové spojení aby otestoval, jestli jsou některé potřebné porty blokovány.</translation>
     </message>
     <message>
         <location filename="../gui/PcView.qml" line="358"/>
@@ -404,8 +404,8 @@
     <message>
         <location filename="../cli/quitstream.cpp" line="88"/>
         <location filename="../cli/startstream.cpp" line="89"/>
-        <source>Computer %1 has not been paired. Please open Occular to pair before streaming.</source>
-        <translation>Počítač %1 nebyl spárován. Prosím otevřete Occular a spárujte jej, než budete streamovat.</translation>
+        <source>Computer %1 has not been paired. Please open Ocular to pair before streaming.</source>
+        <translation>Počítač %1 nebyl spárován. Prosím otevřete Ocular a spárujte jej, než budete streamovat.</translation>
     </message>
     <message>
         <location filename="../cli/quitstream.cpp" line="102"/>
@@ -420,8 +420,8 @@
     </message>
     <message>
         <location filename="../cli/listapps.cpp" line="108"/>
-        <source>Computer %1 has not been paired. Please open Occular to pair before retrieving games list.</source>
-        <translation>Počítač %1 nebyl spárován. Prosím otevřete Occular pro spárování, než si zobrazíte seznam her.</translation>
+        <source>Computer %1 has not been paired. Please open Ocular to pair before retrieving games list.</source>
+        <translation>Počítač %1 nebyl spárován. Prosím otevřete Ocular pro spárování, než si zobrazíte seznam her.</translation>
     </message>
 </context>
 <context>
@@ -509,8 +509,8 @@
     </message>
     <message>
         <location filename="../streaming/session.cpp" line="968"/>
-        <source>The version of GeForce Experience on %1 is not supported by this build of Occular. You must update Occular to stream from %1.</source>
-        <translation>Verze GeForce Experience na %1 není touto verzí Occularu podporována. Abyste mohli streamovat z %1, musíte aktualizovat Occular na novější verzi.</translation>
+        <source>The version of GeForce Experience on %1 is not supported by this build of Ocular. You must update Ocular to stream from %1.</source>
+        <translation>Verze GeForce Experience na %1 není touto verzí Ocularu podporována. Abyste mohli streamovat z %1, musíte aktualizovat Ocular na novější verzi.</translation>
     </message>
     <message>
         <location filename="../streaming/session.cpp" line="973"/>
@@ -644,8 +644,8 @@
     </message>
     <message>
         <location filename="../streaming/session.cpp" line="1185"/>
-        <source>An attached gamepad has no mapping and won&apos;t be usable. Visit the Occular help to resolve this.</source>
-        <translation>Připojený gamepad nemá žádné mapování a není použitelný. Navštivte nápovědu Occularu pro pomoc s řešením.</translation>
+        <source>An attached gamepad has no mapping and won&apos;t be usable. Visit the Ocular help to resolve this.</source>
+        <translation>Připojený gamepad nemá žádné mapování a není použitelný. Navštivte nápovědu Ocularu pro pomoc s řešením.</translation>
     </message>
     <message>
         <location filename="../streaming/session.cpp" line="1203"/>
@@ -839,13 +839,13 @@
     </message>
     <message>
         <location filename="../gui/SettingsView.qml" line="929"/>
-        <source>Mute audio stream when Occular is not the active window</source>
-        <translation>Vypnout zvuk streamování, když Occular není aktivním oknem</translation>
+        <source>Mute audio stream when Ocular is not the active window</source>
+        <translation>Vypnout zvuk streamování, když Ocular není aktivním oknem</translation>
     </message>
     <message>
         <location filename="../gui/SettingsView.qml" line="940"/>
-        <source>Mutes Occular&apos;s audio when you Alt+Tab out of the stream or click on a different window.</source>
-        <translation>Vypne zvuk Occularu, když se přepnete ze streamování pomocí Alt+Tab nebo kliknete na jiné okno.</translation>
+        <source>Mutes Ocular&apos;s audio when you Alt+Tab out of the stream or click on a different window.</source>
+        <translation>Vypne zvuk Ocularu, když se přepnete ze streamování pomocí Alt+Tab nebo kliknete na jiné okno.</translation>
     </message>
     <message>
         <location filename="../gui/SettingsView.qml" line="989"/>
@@ -864,8 +864,8 @@
     </message>
     <message>
         <location filename="../gui/SettingsView.qml" line="1160"/>
-        <source>You must restart Occular for this change to take effect</source>
-        <translation>Aby se toto nastavení projevilo, musíte restartovat Occular</translation>
+        <source>You must restart Ocular for this change to take effect</source>
+        <translation>Aby se toto nastavení projevilo, musíte restartovat Ocular</translation>
     </message>
     <message>
         <location filename="../gui/SettingsView.qml" line="1177"/>
@@ -938,8 +938,8 @@
     </message>
     <message>
         <location filename="../gui/SettingsView.qml" line="1340"/>
-        <source>NOTE: Certain keyboard shortcuts like Ctrl+Alt+Del on Windows cannot be intercepted by any application, including Occular.</source>
-        <translation>Poznámka: Některé zkratky, jako například Ctrl+Alt+Del na Windowsu, nelze zachytit žádnou aplikací, ani Occularem.</translation>
+        <source>NOTE: Certain keyboard shortcuts like Ctrl+Alt+Del on Windows cannot be intercepted by any application, including Ocular.</source>
+        <translation>Poznámka: Některé zkratky, jako například Ctrl+Alt+Del na Windowsu, nelze zachytit žádnou aplikací, ani Ocularem.</translation>
     </message>
     <message>
         <location filename="../gui/SettingsView.qml" line="1403"/>
@@ -993,13 +993,13 @@
     </message>
     <message>
         <location filename="../gui/SettingsView.qml" line="1501"/>
-        <source>Process gamepad input when Occular is in the background</source>
-        <translation>Zachytávat tlačítka gamepadu, když je Occular na pozadí</translation>
+        <source>Process gamepad input when Ocular is in the background</source>
+        <translation>Zachytávat tlačítka gamepadu, když je Ocular na pozadí</translation>
     </message>
     <message>
         <location filename="../gui/SettingsView.qml" line="1512"/>
-        <source>Allows Occular to capture gamepad inputs even if it&apos;s not the current window in focus</source>
-        <translation>Umožňuje Occularu zachytávat stisknutí tlačítek na gamepadu i když není aktivním oknem</translation>
+        <source>Allows Ocular to capture gamepad inputs even if it&apos;s not the current window in focus</source>
+        <translation>Umožňuje Ocularu zachytávat stisknutí tlačítek na gamepadu i když není aktivním oknem</translation>
     </message>
     <message>
         <location filename="../gui/SettingsView.qml" line="949"/>
@@ -1226,8 +1226,8 @@
     </message>
     <message>
         <location filename="../gui/StreamSegue.qml" line="76"/>
-        <source>This PC&apos;s Internet connection is blocking Occular. Streaming over the Internet may not work while connected to this network.</source>
-        <translation>Internetové připojení tohoto počítače blokuje Occular. Streamování přes internet nemusí fungovat, dokud jste připojeni k této síti.</translation>
+        <source>This PC&apos;s Internet connection is blocking Ocular. Streaming over the Internet may not work while connected to this network.</source>
+        <translation>Internetové připojení tohoto počítače blokuje Ocular. Streamování přes internet nemusí fungovat, dokud jste připojeni k této síti.</translation>
     </message>
     <message>
         <location filename="../gui/StreamSegue.qml" line="167"/>
@@ -1274,8 +1274,8 @@
     </message>
     <message>
         <location filename="../gui/main.qml" line="364"/>
-        <source>Update available for Occular: Version %1</source>
-        <translation>K dispozici je aktualizace pro Occular: Verze %1</translation>
+        <source>Update available for Ocular: Version %1</source>
+        <translation>K dispozici je aktualizace pro Ocular: Verze %1</translation>
     </message>
     <message>
         <location filename="../gui/main.qml" line="411"/>
@@ -1289,13 +1289,13 @@
     </message>
     <message>
         <location filename="../gui/main.qml" line="466"/>
-        <source>This version of Occular isn&apos;t optimized for your PC. Please download the &apos;%1&apos; version of Occular for the best streaming performance.</source>
-        <translation>Tato verze Occularu není optimalizována pro váš počítač. Prosím stáhěnte Occular verze &apos;%1&apos; pro nejlepší výkon při streamování.</translation>
+        <source>This version of Ocular isn&apos;t optimized for your PC. Please download the &apos;%1&apos; version of Ocular for the best streaming performance.</source>
+        <translation>Tato verze Ocularu není optimalizována pro váš počítač. Prosím stáhěnte Ocular verze &apos;%1&apos; pro nejlepší výkon při streamování.</translation>
     </message>
     <message>
         <location filename="../gui/main.qml" line="475"/>
-        <source>Occular detected gamepads without a mapping:</source>
-        <translation>Occular detekoval gamepady bez mapování:</translation>
+        <source>Ocular detected gamepads without a mapping:</source>
+        <translation>Ocular detekoval gamepady bez mapování:</translation>
     </message>
     <message>
         <location filename="../gui/main.qml" line="388"/>
@@ -1304,8 +1304,8 @@
     </message>
     <message>
         <location filename="../gui/main.qml" line="449"/>
-        <source>No functioning hardware accelerated video decoder was detected by Occular. Your streaming performance may be severely degraded in this configuration.</source>
-        <translation>Occular nedetekoval žádný dekodér videa s podporou hardwaru. Výkon vašeho streamování může být v této konfiguraci výrazně zhoršen.</translation>
+        <source>No functioning hardware accelerated video decoder was detected by Ocular. Your streaming performance may be severely degraded in this configuration.</source>
+        <translation>Ocular nedetekoval žádný dekodér videa s podporou hardwaru. Výkon vašeho streamování může být v této konfiguraci výrazně zhoršen.</translation>
     </message>
     <message>
         <location filename="../gui/main.qml" line="451"/>

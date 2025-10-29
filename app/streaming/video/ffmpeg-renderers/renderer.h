@@ -237,7 +237,7 @@ public:
     virtual bool isFrameFullRange(const AVFrame* frame) {
         // This handles the case where the color range is unknown,
         // so that we use Limited color range which is the default
-        // behavior for Occular.
+        // behavior for Ocular.
         return frame->color_range == AVCOL_RANGE_JPEG;
     }
 

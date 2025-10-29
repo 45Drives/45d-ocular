@@ -2,10 +2,10 @@ QT += core quick network quickcontrols2 svg
 CONFIG += c++11
 
 unix:!macx {
-    TARGET = moonlight
+    TARGET = ocular
 } else {
     # On macOS, this is the name displayed in the global menu bar
-    TARGET = Occular
+    TARGET = Ocular
 }
 
 include(../globaldefs.pri)
@@ -532,25 +532,25 @@ unix:!macx: {
 
     target.path = $$PREFIX/$$BINDIR/
 
-    desktop.files = deploy/linux/com.moonlight_stream.Occular.desktop
+    desktop.files = deploy/linux/com.moonlight_stream.Ocular.desktop
     desktop.path = $$PREFIX/$$DATADIR/applications/
 
     icons.files = res/45d-fan-dark.svg
     icons.path = $$PREFIX/$$DATADIR/icons/hicolor/scalable/apps/
 
-    appstream.files = deploy/linux/com.moonlight_stream.Occular.appdata.xml
+    appstream.files = deploy/linux/com.moonlight_stream.Ocular.appdata.xml
     appstream.path = $$PREFIX/$$DATADIR/metainfo/
 
     INSTALLS += target desktop icons appstream
 }
 win32 {
     RC_ICONS = moonlight.ico
-    QMAKE_TARGET_COMPANY = Occular Streaming Project
-    QMAKE_TARGET_DESCRIPTION = Occular Streaming Client
-    QMAKE_TARGET_PRODUCT = Occular
+    QMAKE_TARGET_COMPANY = Ocular Streaming Project
+    QMAKE_TARGET_DESCRIPTION = Ocular Streaming Client
+    QMAKE_TARGET_PRODUCT = Ocular
 
     CONFIG -= embed_manifest_exe
-    QMAKE_LFLAGS += /MANIFEST:embed /MANIFESTINPUT:$${PWD}/Occular.exe.manifest
+    QMAKE_LFLAGS += /MANIFEST:embed /MANIFESTINPUT:$${PWD}/Ocular.exe.manifest
 }
 macx {
     # Create Info.plist in object dir with the correct version string

@@ -1,3 +1,5 @@
+TARGET = Ocular
+
 TEMPLATE = subdirs
 SUBDIRS = \
     moonlight-common-c \

@@ -159,9 +159,9 @@ ApplicationWindow {
     }
 
     // This timer keeps us polling for 5 minutes of inactivity
-    // to allow the user to work with Occular on a second display
+    // to allow the user to work with Ocular on a second display
     // while dealing with configuration issues. This will ensure
-    // machines come online even if the input focus isn't on Occular.
+    // machines come online even if the input focus isn't on Ocular.
     Timer {
         id: inactivityTimer
         interval: 5 * 60000
@@ -378,7 +378,7 @@ ApplicationWindow {
 
                 function updateAvailable(version, url) {
                     ToolTip.text = qsTr(
-                                "Update available for Occular: Version %1").arg(
+                                "Update available for Ocular: Version %1").arg(
                                 version)
                     updateButton.browserUrl = url
                     updateButton.visible = true
@@ -425,7 +425,7 @@ ApplicationWindow {
                 id: helpMenu
 
                 MenuItem {
-                    text: qsTr("Occular Setup Guide")
+                    text: qsTr("Ocular Setup Guide")
                     onTriggered: Qt.openUrlExternally("https://github.com/moonlight-stream/moonlight-docs/wiki/Setup-Guide")
                 }
                 MenuItem {
@@ -495,7 +495,7 @@ ApplicationWindow {
     ErrorMessageDialog {
         id: noHwDecoderDialog
         text: qsTr(
-                  "No functioning hardware accelerated video decoder was detected by Occular. "
+                  "No functioning hardware accelerated video decoder was detected by Ocular. "
                   + "Your streaming performance may be severely degraded in this configuration.")
         helpText: qsTr("Click the Help button for more information on solving this problem.")
         helpUrl: "https://github.com/moonlight-stream/moonlight-docs/wiki/Fixing-Hardware-Decoding-Problems"
@@ -513,7 +513,7 @@ ApplicationWindow {
     NavigableMessageDialog {
         id: wow64Dialog
         standardButtons: Dialog.Ok | Dialog.Cancel
-        text: qsTr("This version of Occular isn't optimized for your PC. Please download the '%1' version of Occular for the best streaming performance.").arg(
+        text: qsTr("This version of Ocular isn't optimized for your PC. Please download the '%1' version of Ocular for the best streaming performance.").arg(
                   SystemProperties.friendlyNativeArchName)
         onAccepted: {
             Qt.openUrlExternally(
@@ -524,7 +524,7 @@ ApplicationWindow {
     ErrorMessageDialog {
         id: unmappedGamepadDialog
         property string unmappedGamepads: ""
-        text: qsTr("Occular detected gamepads without a mapping:") + "\n" + unmappedGamepads
+        text: qsTr("Ocular detected gamepads without a mapping:") + "\n" + unmappedGamepads
         helpTextSeparator: "\n\n"
         helpText: qsTr("Click the Help button for information on how to map your gamepads.")
         helpUrl: "https://github.com/moonlight-stream/moonlight-docs/wiki/Gamepad-Mapping"

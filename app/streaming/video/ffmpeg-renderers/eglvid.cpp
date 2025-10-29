@@ -399,7 +399,7 @@ bool EGLRenderer::initialize(PDECODER_PARAMETERS params)
 
     // It's not safe to attempt to opportunistically create a GLES2
     // renderer prior to 2.0.10. If GLES2 isn't available, SDL will
-    // attempt to dereference a null pointer and crash Occular.
+    // attempt to dereference a null pointer and crash Ocular.
     // https://bugzilla.libsdl.org/show_bug.cgi?id=4350
     // https://hg.libsdl.org/SDL/rev/84618d571795
     if (!SDL_VERSION_ATLEAST(2, 0, 10)) {
