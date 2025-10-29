@@ -227,8 +227,8 @@
     </message>
     <message>
         <location filename="../gui/PcView.qml" line="66"/>
-        <source>This PC&apos;s Internet connection is blocking Moonlight. Streaming over the Internet may not work while connected to this network.</source>
-        <translation>Den här PCns internetanslutning blockerar Moonlight. Strömning via Internet kanske inte fungerar när du är ansluten till det här nätverket.</translation>
+        <source>This PC&apos;s Internet connection is blocking Occular. Streaming over the Internet may not work while connected to this network.</source>
+        <translation>Den här PCns internetanslutning blockerar Occular. Strömning via Internet kanske inte fungerar när du är ansluten till det här nätverket.</translation>
     </message>
     <message>
         <location filename="../gui/PcView.qml" line="69"/>
@@ -272,8 +272,8 @@
     </message>
     <message>
         <location filename="../gui/PcView.qml" line="228"/>
-        <source>The version of GeForce Experience on %1 is not supported by this build of Moonlight. You must update Moonlight to stream from %1.</source>
-        <translation>Versionen av GeForce Experience på %1 stöds inte av den här versionen av Moonlight. Du måste uppdatera Moonlight för att kunna strömma från %1.</translation>
+        <source>The version of GeForce Experience on %1 is not supported by this build of Occular. You must update Occular to stream from %1.</source>
+        <translation>Versionen av GeForce Experience på %1 stöds inte av den här versionen av Occular. Du måste uppdatera Occular för att kunna strömma från %1.</translation>
     </message>
     <message>
         <location filename="../gui/PcView.qml" line="331"/>
@@ -282,18 +282,18 @@
     </message>
     <message>
         <location filename="../gui/PcView.qml" line="342"/>
-        <source>This network does not appear to be blocking Moonlight. If you still have trouble connecting, check your PC&apos;s firewall settings.</source>
-        <translation>Detta nätverk verkar inte blockera Moonlight. Om du fortfarande har problem med anslutningen kan du kontrollera din PCs brandväggsinställningar.</translation>
+        <source>This network does not appear to be blocking Occular. If you still have trouble connecting, check your PC&apos;s firewall settings.</source>
+        <translation>Detta nätverk verkar inte blockera Occular. Om du fortfarande har problem med anslutningen kan du kontrollera din PCs brandväggsinställningar.</translation>
     </message>
     <message>
         <location filename="../gui/PcView.qml" line="342"/>
-        <source>If you are trying to stream over the Internet, install the Moonlight Internet Hosting Tool on your gaming PC and run the included Internet Streaming Tester to check your gaming PC&apos;s Internet connection.</source>
-        <translation>Om du försöker strömma via Internet installerar du Moonlight Internet Hosting Tool på din speldator och kör den medföljande Internet Streaming Tester för att kontrollera din speldatorns Internetanslutning.</translation>
+        <source>If you are trying to stream over the Internet, install the Occular Internet Hosting Tool on your gaming PC and run the included Internet Streaming Tester to check your gaming PC&apos;s Internet connection.</source>
+        <translation>Om du försöker strömma via Internet installerar du Occular Internet Hosting Tool på din speldator och kör den medföljande Internet Streaming Tester för att kontrollera din speldatorns Internetanslutning.</translation>
     </message>
     <message>
         <location filename="../gui/PcView.qml" line="346"/>
-        <source>Your PC&apos;s current network connection seems to be blocking Moonlight. Streaming over the Internet may not work while connected to this network.</source>
-        <translation>Din PC:s aktuella nätverksanslutning verkar blockera Moonlight. Streaming över Internet kanske inte fungerar när du är ansluten till det här nätverket.</translation>
+        <source>Your PC&apos;s current network connection seems to be blocking Occular. Streaming over the Internet may not work while connected to this network.</source>
+        <translation>Din PC:s aktuella nätverksanslutning verkar blockera Occular. Streaming över Internet kanske inte fungerar när du är ansluten till det här nätverket.</translation>
     </message>
     <message>
         <location filename="../gui/PcView.qml" line="346"/>
@@ -302,8 +302,8 @@
     </message>
     <message>
         <location filename="../gui/PcView.qml" line="338"/>
-        <source>The network test could not be performed because none of Moonlight&apos;s connection testing servers were reachable from this PC. Check your Internet connection or try again later.</source>
-        <translation>Nätverkstestet kunde inte utföras eftersom ingen av Moonlights servrar för anslutningstestning kunde nås från den här datorn. Kontrollera din internetanslutning eller försök igen senare.</translation>
+        <source>The network test could not be performed because none of Occular&apos;s connection testing servers were reachable from this PC. Check your Internet connection or try again later.</source>
+        <translation>Nätverkstestet kunde inte utföras eftersom ingen av Occulars servrar för anslutningstestning kunde nås från den här datorn. Kontrollera din internetanslutning eller försök igen senare.</translation>
     </message>
     <message>
         <location filename="../gui/PcView.qml" line="167"/>
@@ -342,8 +342,8 @@
     </message>
     <message>
         <location filename="../gui/PcView.qml" line="331"/>
-        <source>Moonlight is testing your network connection to determine if any required ports are blocked.</source>
-        <translation>Moonlight prövar din nätverksanslutning för att avgöra om några nödvändiga portar är blockerade.</translation>
+        <source>Occular is testing your network connection to determine if any required ports are blocked.</source>
+        <translation>Occular prövar din nätverksanslutning för att avgöra om några nödvändiga portar är blockerade.</translation>
     </message>
     <message>
         <location filename="../gui/PcView.qml" line="358"/>
@@ -404,8 +404,8 @@
     <message>
         <location filename="../cli/quitstream.cpp" line="88"/>
         <location filename="../cli/startstream.cpp" line="89"/>
-        <source>Computer %1 has not been paired. Please open Moonlight to pair before streaming.</source>
-        <translation>Dator %1 har inte parats ihop. Öppna Moonlight för att para ihop datorn innan du strömmar.</translation>
+        <source>Computer %1 has not been paired. Please open Occular to pair before streaming.</source>
+        <translation>Dator %1 har inte parats ihop. Öppna Occular för att para ihop datorn innan du strömmar.</translation>
     </message>
     <message>
         <location filename="../cli/quitstream.cpp" line="102"/>
@@ -420,8 +420,8 @@
     </message>
     <message>
         <location filename="../cli/listapps.cpp" line="108"/>
-        <source>Computer %1 has not been paired. Please open Moonlight to pair before retrieving games list.</source>
-        <translation>Datorn %1 har inte parats ihop. Öppna Moonlight för att para ihop datorn innan du hämtar listan över spel.</translation>
+        <source>Computer %1 has not been paired. Please open Occular to pair before retrieving games list.</source>
+        <translation>Datorn %1 har inte parats ihop. Öppna Occular för att para ihop datorn innan du hämtar listan över spel.</translation>
     </message>
 </context>
 <context>
@@ -509,8 +509,8 @@
     </message>
     <message>
         <location filename="../streaming/session.cpp" line="968"/>
-        <source>The version of GeForce Experience on %1 is not supported by this build of Moonlight. You must update Moonlight to stream from %1.</source>
-        <translation>Versionen av GeForce Experience på %1 stöds inte av den här versionen av Moonlight. Du måste uppdatera Moonlight för att kunna strömma från %1.</translation>
+        <source>The version of GeForce Experience on %1 is not supported by this build of Occular. You must update Occular to stream from %1.</source>
+        <translation>Versionen av GeForce Experience på %1 stöds inte av den här versionen av Occular. Du måste uppdatera Occular för att kunna strömma från %1.</translation>
     </message>
     <message>
         <location filename="../streaming/session.cpp" line="973"/>
@@ -644,8 +644,8 @@
     </message>
     <message>
         <location filename="../streaming/session.cpp" line="1185"/>
-        <source>An attached gamepad has no mapping and won&apos;t be usable. Visit the Moonlight help to resolve this.</source>
-        <translation>En ansluten gamepad har ingen mappning och kan inte användas. Besök Moonlight-hjälpen för att lösa detta.</translation>
+        <source>An attached gamepad has no mapping and won&apos;t be usable. Visit the Occular help to resolve this.</source>
+        <translation>En ansluten gamepad har ingen mappning och kan inte användas. Besök Occular-hjälpen för att lösa detta.</translation>
     </message>
     <message>
         <location filename="../streaming/session.cpp" line="1203"/>
@@ -844,13 +844,13 @@
     </message>
     <message>
         <location filename="../gui/SettingsView.qml" line="929"/>
-        <source>Mute audio stream when Moonlight is not the active window</source>
-        <translation>Stäng av ljudströmmen när Moonlight inte är det aktiva fönstret</translation>
+        <source>Mute audio stream when Occular is not the active window</source>
+        <translation>Stäng av ljudströmmen när Occular inte är det aktiva fönstret</translation>
     </message>
     <message>
         <location filename="../gui/SettingsView.qml" line="940"/>
-        <source>Mutes Moonlight&apos;s audio when you Alt+Tab out of the stream or click on a different window.</source>
-        <translation>Stänger av Moonlights ljud när du Alt+Tab ut ur strömmen eller klickar på ett annat fönster.</translation>
+        <source>Mutes Occular&apos;s audio when you Alt+Tab out of the stream or click on a different window.</source>
+        <translation>Stänger av Occulars ljud när du Alt+Tab ut ur strömmen eller klickar på ett annat fönster.</translation>
     </message>
     <message>
         <location filename="../gui/SettingsView.qml" line="989"/>
@@ -869,8 +869,8 @@
     </message>
     <message>
         <location filename="../gui/SettingsView.qml" line="1160"/>
-        <source>You must restart Moonlight for this change to take effect</source>
-        <translation>Du måste starta om Moonlight för att den här ändringen ska träda i kraft</translation>
+        <source>You must restart Occular for this change to take effect</source>
+        <translation>Du måste starta om Occular för att den här ändringen ska träda i kraft</translation>
     </message>
     <message>
         <location filename="../gui/SettingsView.qml" line="1177"/>
@@ -943,8 +943,8 @@
     </message>
     <message>
         <location filename="../gui/SettingsView.qml" line="1340"/>
-        <source>NOTE: Certain keyboard shortcuts like Ctrl+Alt+Del on Windows cannot be intercepted by any application, including Moonlight.</source>
-        <translation>OBS: Vissa tangentbordsgenvägar som Ctrl+Alt+Del i Windows kan inte fångas av något program, inklusive Moonlight.</translation>
+        <source>NOTE: Certain keyboard shortcuts like Ctrl+Alt+Del on Windows cannot be intercepted by any application, including Occular.</source>
+        <translation>OBS: Vissa tangentbordsgenvägar som Ctrl+Alt+Del i Windows kan inte fångas av något program, inklusive Occular.</translation>
     </message>
     <message>
         <location filename="../gui/SettingsView.qml" line="1403"/>
@@ -998,13 +998,13 @@
     </message>
     <message>
         <location filename="../gui/SettingsView.qml" line="1501"/>
-        <source>Process gamepad input when Moonlight is in the background</source>
-        <translation>Behandla spelkontrollsinmatning när Moonlight är i bakgrunden</translation>
+        <source>Process gamepad input when Occular is in the background</source>
+        <translation>Behandla spelkontrollsinmatning när Occular är i bakgrunden</translation>
     </message>
     <message>
         <location filename="../gui/SettingsView.qml" line="1512"/>
-        <source>Allows Moonlight to capture gamepad inputs even if it&apos;s not the current window in focus</source>
-        <translation>Moonlight kan fånga gamepad-inmatningar även om det inte är det aktuella fönstret i fokus</translation>
+        <source>Allows Occular to capture gamepad inputs even if it&apos;s not the current window in focus</source>
+        <translation>Occular kan fånga gamepad-inmatningar även om det inte är det aktuella fönstret i fokus</translation>
     </message>
     <message>
         <location filename="../gui/SettingsView.qml" line="949"/>
@@ -1226,8 +1226,8 @@
     </message>
     <message>
         <location filename="../gui/StreamSegue.qml" line="76"/>
-        <source>This PC&apos;s Internet connection is blocking Moonlight. Streaming over the Internet may not work while connected to this network.</source>
-        <translation>Den här PCns internetanslutning blockerar Moonlight. Strömning genom Internet kanske inte fungerar när du är ansluten till det här nätverket.</translation>
+        <source>This PC&apos;s Internet connection is blocking Occular. Streaming over the Internet may not work while connected to this network.</source>
+        <translation>Den här PCns internetanslutning blockerar Occular. Strömning genom Internet kanske inte fungerar när du är ansluten till det här nätverket.</translation>
     </message>
     <message>
         <location filename="../gui/StreamSegue.qml" line="167"/>
@@ -1274,8 +1274,8 @@
     </message>
     <message>
         <location filename="../gui/main.qml" line="364"/>
-        <source>Update available for Moonlight: Version %1</source>
-        <translation>Uppdatering tillgänglig för Moonlight: Version %1</translation>
+        <source>Update available for Occular: Version %1</source>
+        <translation>Uppdatering tillgänglig för Occular: Version %1</translation>
     </message>
     <message>
         <location filename="../gui/main.qml" line="411"/>
@@ -1289,13 +1289,13 @@
     </message>
     <message>
         <location filename="../gui/main.qml" line="466"/>
-        <source>This version of Moonlight isn&apos;t optimized for your PC. Please download the &apos;%1&apos; version of Moonlight for the best streaming performance.</source>
-        <translation>Den här versionen av Moonlight är inte optimerad för din dator. Hämta ner version &apos;%1&apos; av Moonlight för bästa strömningsprestanda.</translation>
+        <source>This version of Occular isn&apos;t optimized for your PC. Please download the &apos;%1&apos; version of Occular for the best streaming performance.</source>
+        <translation>Den här versionen av Occular är inte optimerad för din dator. Hämta ner version &apos;%1&apos; av Occular för bästa strömningsprestanda.</translation>
     </message>
     <message>
         <location filename="../gui/main.qml" line="475"/>
-        <source>Moonlight detected gamepads without a mapping:</source>
-        <translation>Moonlight upptäckte spelkontroller utan mappning:</translation>
+        <source>Occular detected gamepads without a mapping:</source>
+        <translation>Occular upptäckte spelkontroller utan mappning:</translation>
     </message>
     <message>
         <location filename="../gui/main.qml" line="515"/>
@@ -1309,8 +1309,8 @@
     </message>
     <message>
         <location filename="../gui/main.qml" line="449"/>
-        <source>No functioning hardware accelerated video decoder was detected by Moonlight. Your streaming performance may be severely degraded in this configuration.</source>
-        <translation>Moonlight har inte hittat någon fungerande hårdvaruaccelererad videoavkodare. Din prestanda när du strömma kan bli kraftigt försämrad i den här konfigurationen.</translation>
+        <source>No functioning hardware accelerated video decoder was detected by Occular. Your streaming performance may be severely degraded in this configuration.</source>
+        <translation>Occular har inte hittat någon fungerande hårdvaruaccelererad videoavkodare. Din prestanda när du strömma kan bli kraftigt försämrad i den här konfigurationen.</translation>
     </message>
     <message>
         <location filename="../gui/main.qml" line="451"/>

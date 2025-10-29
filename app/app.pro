@@ -5,7 +5,7 @@ unix:!macx {
     TARGET = moonlight
 } else {
     # On macOS, this is the name displayed in the global menu bar
-    TARGET = Moonlight
+    TARGET = Occular
 }
 
 include(../globaldefs.pri)
@@ -532,25 +532,25 @@ unix:!macx: {
 
     target.path = $$PREFIX/$$BINDIR/
 
-    desktop.files = deploy/linux/com.moonlight_stream.Moonlight.desktop
+    desktop.files = deploy/linux/com.moonlight_stream.Occular.desktop
     desktop.path = $$PREFIX/$$DATADIR/applications/
 
     icons.files = res/moonlight.svg
     icons.path = $$PREFIX/$$DATADIR/icons/hicolor/scalable/apps/
 
-    appstream.files = deploy/linux/com.moonlight_stream.Moonlight.appdata.xml
+    appstream.files = deploy/linux/com.moonlight_stream.Occular.appdata.xml
     appstream.path = $$PREFIX/$$DATADIR/metainfo/
 
     INSTALLS += target desktop icons appstream
 }
 win32 {
     RC_ICONS = moonlight.ico
-    QMAKE_TARGET_COMPANY = Moonlight Game Streaming Project
-    QMAKE_TARGET_DESCRIPTION = Moonlight Game Streaming Client
-    QMAKE_TARGET_PRODUCT = Moonlight
+    QMAKE_TARGET_COMPANY = Occular Game Streaming Project
+    QMAKE_TARGET_DESCRIPTION = Occular Game Streaming Client
+    QMAKE_TARGET_PRODUCT = Occular
 
     CONFIG -= embed_manifest_exe
-    QMAKE_LFLAGS += /MANIFEST:embed /MANIFESTINPUT:$${PWD}/Moonlight.exe.manifest
+    QMAKE_LFLAGS += /MANIFEST:embed /MANIFESTINPUT:$${PWD}/Occular.exe.manifest
 }
 macx {
     # Create Info.plist in object dir with the correct version string

@@ -296,7 +296,7 @@ bool MmalRenderer::isMmalOverlaySupported()
     static bool mmalOverlayCheckResult = true;
 
     // This overlay support check is expensive, so only do it once. The stuff we're
-    // checking can't change without restarting Moonlight (or the whole system).
+    // checking can't change without restarting Occular (or the whole system).
     if (mmalOverlayCheckCompleted) {
         SDL_MemoryBarrierAcquire();
         return mmalOverlayCheckResult;
