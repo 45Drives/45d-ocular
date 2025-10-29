@@ -360,7 +360,7 @@ ApplicationWindow {
 
                 id: updateButton
 
-                iconSource: (uiSettings.darkMode !== Material.Dark) ? "qrc:/res/update-dark.svg" : "qrc:/res/update.svg"
+                iconSource: "qrc:/res/update.svg"
 
                 ToolTip.delay: 1000
                 ToolTip.timeout: 3000

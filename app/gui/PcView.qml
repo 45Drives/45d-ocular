@@ -15,6 +15,22 @@ Item {
     activeFocusOnTab: true
     objectName: qsTr("Computers")
 
+    Control {
+        id: themeHost
+        visible: false
+        Material.theme: SystemProperties.isDarkTheme ? Material.Dark : Material.Light
+    }
+
+    QtObject {
+        id: theme
+        readonly property bool dark: (Material.theme === Material.Dark)
+
+        // Status colors (Material-ish greens/reds that read on both themes)
+        readonly property color online:  dark ? "#81C784" : "#2e7d32"  // lighter in dark
+        readonly property color offline: dark ? "#EF9A9A" : "#b71c1c"
+
+    }
+
     QtObject {
         id: layoutVars
         property int spacing: 12
@@ -32,8 +48,6 @@ Item {
         property int actionsW: 220
         property int spacing: 12
     }
-
-    Material.theme: SystemProperties.isDarkTheme ? Material.Dark : Material.Light
 
     property ComputerModel computerModel: createModel()
     property string filterText: ""
@@ -115,8 +129,8 @@ Item {
         Rectangle {
             Layout.fillWidth: true
             height: 36
-            color: Qt.rgba(0,0,0,0.04)
-            border.color: Qt.rgba(0,0,0,0.12)
+            color: (Material.theme === Material.Dark) ? Qt.rgba(1,1,1,0.06) : Qt.rgba(0,0,0,0.04)
+            border.color: (Material.theme === Material.Dark) ? Qt.rgba(1,1,1,0.12) : Qt.rgba(0,0,0,0.12)
             layer.enabled: true
 
             RowLayout {
@@ -209,8 +223,8 @@ Item {
             delegate: Rectangle {
                 id: rowRect
                 width: list.width
-                color: (index % 2 === 0) ? Qt.rgba(0,0,0,0.02) : "transparent"
-                border.color: Qt.rgba(0,0,0,0.06)
+                color: (index % 2 === 0) ? ( (Material.theme === Material.Dark) ? Qt.rgba(1,1,1,0.04) : Qt.rgba(0,0,0,0.02)) : "transparent"
+                border.color: (Material.theme === Material.Dark) ? Qt.rgba(1,1,1,0.08) : Qt.rgba(0,0,0,0.06)
                 layer.enabled: true
 
                 // Filter: collapse non-matching rows
@@ -235,9 +249,7 @@ Item {
                         spacing: 8
 
                         Image {
-                            source: (Material.theme !== Material.Dark)
-                                    ? "qrc:/res/desktop_windows-48px-dark.svg"
-                                    : "qrc:/res/desktop_windows-48px.svg"
+                            source: (Material.theme !== Material.Dark) ? "qrc:/res/desktop_windows-48px-dark.svg" : "qrc:/res/desktop_windows-48px.svg"
                             sourceSize.width: 20
                             sourceSize.height: 20
                         }
@@ -269,7 +281,7 @@ Item {
                         Layout.maximumWidth: cols.statusW
                         text: model.statusUnknown ? qsTr("Checking…")
                                                   : (model.online ? qsTr("Online") : qsTr("Offline"))
-                        color: model.online ? "#2e7d32" : "#b71c1c"
+                        color: model.online ? ((Material.theme !== Material.Dark) ? "#81C784" : "#2e7d32") : ((Material.theme !== Material.Dark) ? "#EF9A9A" : "#b71c1c")
                         elide: Label.ElideRight
                         verticalAlignment: Text.AlignVCenter
                     }
@@ -312,13 +324,6 @@ Item {
                             text: qsTr("Wake")
                             enabled: !model.online && model.wakeable
                             onClicked: computerModel.wakeComputer(index)
-                        }
-                        Button {
-                            text: qsTr("Test")
-                            onClicked: {
-                                computerModel.testConnectionForComputer(index)
-                                testConnectionDialog.open()
-                            }
                         }
                         // Replace MenuButton with Button + Menu
                         Button {
@@ -376,6 +381,13 @@ Item {
                                     showPcDetailsDialog.open()
                                 }
                             }
+                            MenuItem {
+                                text: qsTr("Test")
+                                onTriggered: {
+                                    computerModel.testConnectionForComputer(index)
+                                    testConnectionDialog.open()
+                                }
+                            }
                         }
                     }
                 }
@@ -405,6 +417,7 @@ Item {
         modal: true
         closePolicy: Popup.CloseOnEscape
         property string pin : "0000"
+        imageSrc: (Material.theme !== Material.Dark) ? "qrc:/res/baseline-error_outline-24px-dark.svg" : "qrc:/res/baseline-error_outline-24px.svg"
         text: qsTr("Please enter %1 on your host PC. This dialog will close when pairing is completed.").arg(pin)+"\n\n"+
              qsTr("If your host PC is running Sunshine, navigate to the Sunshine web UI to enter the PIN.")
         standardButtons: Dialog.Cancel
@@ -415,6 +428,7 @@ Item {
         id: deletePcDialog
         property int pcIndex : -1
         property string pcName : ""
+        imageSrc: (Material.theme !== Material.Dark) ? "qrc:/res/baseline-error_outline-24px-dark.svg" : "qrc:/res/baseline-error_outline-24px.svg"
         text: qsTr("Are you sure you want to remove '%1'?").arg(pcName)
         standardButtons: Dialog.Yes | Dialog.No
         onAccepted: computerModel.deleteComputer(pcIndex)
@@ -459,16 +473,16 @@ Item {
         function connectionTestComplete(result, blockedPorts) {
             if (result === -1) {
                 text = qsTr("The network test could not be performed because none of Occular's connection testing servers were reachable from this PC. Check your Internet connection or try again later.")
-                imageSrc = "qrc:/res/baseline-warning-24px.svg"
+                imageSrc = (Material.theme !== Material.Dark) ? "qrc:/res/baseline-warning-24px-dark.svg" : "qrc:/res/baseline-warning-24px.svg"
             }
             else if (result === 0) {
                 text = qsTr("This network does not appear to be blocking Occular. If you still have trouble connecting, check your PC's firewall settings.") + "\n\n" + qsTr("If you are trying to stream over the Internet, install the Occular Internet Hosting Tool on your gaming PC and run the included Internet Streaming Tester to check your gaming PC's Internet connection.")
-                imageSrc = "qrc:/res/baseline-check_circle_outline-24px.svg"
+                imageSrc = (Material.theme !== Material.Dark) ? "qrc:/res/baseline-check_circle_outline-24px-dark.svg" : "qrc:/res/baseline-check_circle_outline-24px.svg"
             }
             else {
                 text = qsTr("Your PC's current network connection seems to be blocking Occular. Streaming over the Internet may not work while connected to this network.") + "\n\n" + qsTr("The following network ports were blocked:") + "\n"
                 text += blockedPorts
-                imageSrc = "qrc:/res/baseline-error_outline-24px.svg"
+                imageSrc = (Material.theme !== Material.Dark) ? "qrc:/res/baseline-error_outline-24px-dark.svg" : "qrc:/res/baseline-error_outline-24px.svg"
             }
             showSpinner = false
         }
@@ -511,7 +525,7 @@ Item {
         id: showPcDetailsDialog
         property string pcDetails : "";
         text: showPcDetailsDialog.pcDetails
-        imageSrc: "qrc:/res/baseline-help_outline-24px.svg"
+        imageSrc: (Material.theme !== Material.Dark) ? "qrc:/res/baseline-help_outline-24px-dark.svg" : "qrc:/res/baseline-help_outline-24px.svg"
         standardButtons: Dialog.Ok
     }
 }
