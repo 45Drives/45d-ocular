@@ -96,6 +96,7 @@
         <file>res/baseline-error_outline-24px-dark.svg</file>
         <file>res/baseline-check_circle_outline-24px-dark.svg</file>
         <file>res/arrow_left-dark.svg</file>
+        <file>gui/Logo.qml</file>
     </qresource>
     <qresource prefix="/data">
         <file alias="gamecontrollerdb.txt">SDL_GameControllerDB/gamecontrollerdb.txt</file>
