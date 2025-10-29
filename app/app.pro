@@ -535,7 +535,7 @@ unix:!macx: {
     desktop.files = deploy/linux/com.moonlight_stream.Occular.desktop
     desktop.path = $$PREFIX/$$DATADIR/applications/
 
-    icons.files = res/moonlight.svg
+    icons.files = res/45d-fan-dark.svg
     icons.path = $$PREFIX/$$DATADIR/icons/hicolor/scalable/apps/
 
     appstream.files = deploy/linux/com.moonlight_stream.Occular.appdata.xml
@@ -545,8 +545,8 @@ unix:!macx: {
 }
 win32 {
     RC_ICONS = moonlight.ico
-    QMAKE_TARGET_COMPANY = Occular Game Streaming Project
-    QMAKE_TARGET_DESCRIPTION = Occular Game Streaming Client
+    QMAKE_TARGET_COMPANY = Occular Streaming Project
+    QMAKE_TARGET_DESCRIPTION = Occular Streaming Client
     QMAKE_TARGET_PRODUCT = Occular
 
     CONFIG -= embed_manifest_exe
