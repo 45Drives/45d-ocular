@@ -7,6 +7,7 @@
 #include <QReadWriteLock>
 #include <QSettings>
 #include <QRunnable>
+#include <QStringList>
 
 class CopySafeReadWriteLock : public QReadWriteLock
 {
@@ -16,6 +17,21 @@ public:
     // Don't actually copy the QReadWriteLock
     CopySafeReadWriteLock(const CopySafeReadWriteLock&) : QReadWriteLock() {}
     CopySafeReadWriteLock& operator=(const CopySafeReadWriteLock &) { return *this; }
+};
+
+struct NvDisplayEndpoint
+{
+    QString name;        // "Display 1", EDID name, or user label
+    NvAddress http;      // HTTP address+port for this display
+    uint16_t httpsPort;  // HTTPS port for this display
+    uint32_t displayId;  // Optional server-provided display identifier
+
+    bool operator==(const NvDisplayEndpoint& o) const {
+        return name == o.name &&
+               http == o.http &&
+               httpsPort == o.httpsPort &&
+               displayId == o.displayId;
+    }
 };
 
 class NvComputer
@@ -45,7 +61,7 @@ public:
     explicit NvComputer(QSettings& settings);
 
     void
-    setRemoteAddress(QHostAddress);
+        setRemoteAddress(QHostAddress);
 
     bool
     update(const NvComputer& that);
@@ -114,6 +130,26 @@ public:
     QVector<NvApp> appList;
     bool isNvidiaServerSoftware;
     // Remember to update isEqualSerialized() when adding fields here!
+
+    // Multi-display endpoints (persisted)
+    QVector<NvDisplayEndpoint> displayEndpoints;
+
+    // Convenience helpers (thread-safe one-liners)
+    int displayCount() const {
+        QReadLocker l(&lock);
+        return displayEndpoints.size();
+    }
+    QStringList displayNames() const {
+        QReadLocker l(&lock);
+        QStringList out;
+        out.reserve(displayEndpoints.size());
+        for (const auto& ep : displayEndpoints) out << ep.name;
+        return out;
+    }
+    NvDisplayEndpoint displayAt(int idx) const {
+        QReadLocker l(&lock);
+        return displayEndpoints[idx];
+    }
 
     // Synchronization
     mutable CopySafeReadWriteLock lock;

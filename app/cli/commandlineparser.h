@@ -63,10 +63,12 @@ public:
 
     QString getHost() const;
     QString getAppName() const;
+    uint getDisplayId() const;
 
 private:
     QString m_Host;
     QString m_AppName;
+    uint m_DisplayId = std::numeric_limits<uint>::max();
     QMap<QString, StreamingPreferences::WindowMode> m_WindowModeMap;
     QMap<QString, StreamingPreferences::AudioConfig> m_AudioConfigMap;
     QMap<QString, StreamingPreferences::VideoCodecConfig> m_VideoCodecMap;

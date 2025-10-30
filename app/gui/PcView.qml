@@ -26,16 +26,15 @@ Item {
         readonly property bool dark: (Material.theme === Material.Dark)
 
         // Status colors (Material-ish greens/reds that read on both themes)
-        readonly property color online:  dark ? "#81C784" : "#2e7d32"  // lighter in dark
+        readonly property color online: dark ? "#81C784" : "#2e7d32" // lighter in dark
         readonly property color offline: dark ? "#EF9A9A" : "#b71c1c"
-
     }
 
     QtObject {
         id: layoutVars
         property int spacing: 12
         property int headerMargin: 8
-        property int rowMargin: 8    // must match headerMargin
+        property int rowMargin: 8 // must match headerMargin
     }
 
     QtObject {
@@ -53,11 +52,26 @@ Item {
     property string filterText: ""
 
     function createModel() {
-        var model = Qt.createQmlObject('import ComputerModel 1.0; ComputerModel {}', pcView, '')
+        var model = Qt.createQmlObject(
+                    'import ComputerModel 1.0; ComputerModel {}', pcView, '')
         model.initialize(ComputerManager)
         model.pairingCompleted.connect(pairingComplete)
-        model.connectionTestCompleted.connect(testConnectionDialog.connectionTestComplete)
+        model.connectionTestCompleted.connect(
+                    testConnectionDialog.connectionTestComplete)
         return model
+    }
+
+    function parentStackView() {
+        var p = pcView
+        while (p) {
+            // Identify a StackView-like object and ignore hidden ones
+            if (p.push && p.pop && p.hasOwnProperty("currentItem")
+                    && p.visible !== false) {
+                return p
+            }
+            p = p.parent
+        }
+        return null
     }
 
     function pairingComplete(error) {
@@ -73,9 +87,11 @@ Item {
         if (!success) {
             errorDialog.text = qsTr("Unable to connect to the specified PC.")
             if (detectedPortBlocking) {
-                errorDialog.text += "\n\n" + qsTr("This PC's Internet connection is blocking Ocular. Streaming over the Internet may not work while connected to this network.")
+                errorDialog.text += "\n\n" + qsTr(
+                            "This PC's Internet connection is blocking Ocular. Streaming over the Internet may not work while connected to this network.")
             } else {
-                errorDialog.helpText = qsTr("Click the Help button for possible solutions.")
+                errorDialog.helpText = qsTr(
+                            "Click the Help button for possible solutions.")
             }
             errorDialog.open()
         }
@@ -83,11 +99,13 @@ Item {
 
     StackView.onActivated: {
         ComputerManager.computerAddCompleted.connect(addComplete)
-        if (SdlGamepadKeyNavigation.getConnectedGamepads() > 0 && computerModel.count > 0) {
+        if (SdlGamepadKeyNavigation.getConnectedGamepads() > 0
+                && computerModel.count > 0) {
             list.currentIndex = 0
         }
     }
-    StackView.onDeactivating: ComputerManager.computerAddCompleted.disconnect(addComplete)
+    StackView.onDeactivating: ComputerManager.computerAddCompleted.disconnect(
+                                  addComplete)
 
     // Layout
     ColumnLayout {
@@ -107,7 +125,10 @@ Item {
                 selectByMouse: true
                 focus: true
                 onTextChanged: filterText = text
-                Keys.onEscapePressed: { clear(); filterText = "" }
+                Keys.onEscapePressed: {
+                    clear()
+                    filterText = ""
+                }
             }
 
             BusyIndicator {
@@ -129,8 +150,14 @@ Item {
         Rectangle {
             Layout.fillWidth: true
             height: 36
-            color: (Material.theme === Material.Dark) ? Qt.rgba(1,1,1,0.06) : Qt.rgba(0,0,0,0.04)
-            border.color: (Material.theme === Material.Dark) ? Qt.rgba(1,1,1,0.12) : Qt.rgba(0,0,0,0.12)
+            color: (Material.theme === Material.Dark) ? Qt.rgba(1, 1, 1,
+                                                                0.06) : Qt.rgba(
+                                                            0, 0, 0, 0.04)
+            border.color: (Material.theme === Material.Dark) ? Qt.rgba(
+                                                                   1, 1, 1,
+                                                                   0.12) : Qt.rgba(
+                                                                   0,
+                                                                   0, 0, 0.12)
             layer.enabled: true
 
             RowLayout {
@@ -140,43 +167,45 @@ Item {
                 spacing: layoutVars.spacing
 
                 Label {
-                    text: qsTr("Name");
-                    font.bold: true;
+                    text: qsTr("Name")
+                    font.bold: true
                     Layout.preferredWidth: cols.nameW
                     Layout.minimumWidth: cols.nameW
                     Layout.maximumWidth: cols.nameW
                 }
                 Label {
-                    text: qsTr("Status");
-                    font.bold: true;
+                    text: qsTr("Status")
+                    font.bold: true
                     Layout.preferredWidth: cols.statusW
                     Layout.minimumWidth: cols.statusW
                     Layout.maximumWidth: cols.statusW
                 }
                 Label {
-                    text: qsTr("Paired");
-                    font.bold: true;
+                    text: qsTr("Paired")
+                    font.bold: true
                     Layout.preferredWidth: cols.pairedW
                     Layout.minimumWidth: cols.pairedW
                     Layout.maximumWidth: cols.pairedW
                 }
                 Label {
-                    text: qsTr("Online");
-                    font.bold: true;
+                    text: qsTr("Online")
+                    font.bold: true
                     Layout.preferredWidth: cols.onlineW
                     Layout.minimumWidth: cols.onlineW
                     Layout.maximumWidth: cols.onlineW
                 }
                 Label {
-                    text: qsTr("Actions");
-                    font.bold: true;
+                    text: qsTr("Actions")
+                    font.bold: true
                     Layout.preferredWidth: cols.actionsW
                     Layout.minimumWidth: cols.actionsW
                     Layout.maximumWidth: cols.actionsW
                 }
 
                 // Spacer so header accounts for the scrollbar
-                Item { Layout.preferredWidth: vbar.visible ? vbar.width : 0 }
+                Item {
+                    Layout.preferredWidth: vbar.visible ? vbar.width : 0
+                }
             }
         }
 
@@ -195,7 +224,9 @@ Item {
             rightMargin: vbar.visible ? vbar.width : 0
 
             // Give the scrollbar an id we can reference
-            ScrollBar.vertical: ScrollBar { id: vbar }
+            ScrollBar.vertical: ScrollBar {
+                id: vbar
+            }
 
             // Empty-state overlay (since ListView/TableView don't have placeholderText)
             Rectangle {
@@ -204,9 +235,7 @@ Item {
                 visible: list.count === 0
                 Label {
                     anchors.centerIn: parent
-                    text: StreamingPreferences.enableMdns
-                          ? qsTr("Searching for compatible hosts on your local network…")
-                          : qsTr("Automatic PC discovery is disabled. Add your PC manually.")
+                    text: StreamingPreferences.enableMdns ? qsTr("Searching for compatible hosts on your local network…") : qsTr("Automatic PC discovery is disabled. Add your PC manually.")
                     wrapMode: Text.Wrap
                 }
             }
@@ -215,7 +244,8 @@ Item {
             Keys.onDeletePressed: {
                 if (currentIndex >= 0) {
                     deletePcDialog.pcIndex = currentIndex
-                    deletePcDialog.pcName = computerModel.data(computerModel.index(currentIndex, 0), "name")
+                    deletePcDialog.pcName = computerModel.data(
+                                computerModel.index(currentIndex, 0), "name")
                     deletePcDialog.open()
                 }
             }
@@ -223,18 +253,31 @@ Item {
             delegate: Rectangle {
                 id: rowRect
                 width: list.width
-                color: (index % 2 === 0) ? ( (Material.theme === Material.Dark) ? Qt.rgba(1,1,1,0.04) : Qt.rgba(0,0,0,0.02)) : "transparent"
-                border.color: (Material.theme === Material.Dark) ? Qt.rgba(1,1,1,0.08) : Qt.rgba(0,0,0,0.06)
+                color: (index % 2 === 0) ? ((Material.theme
+                                             === Material.Dark) ? Qt.rgba(
+                                                                      1, 1, 1,
+                                                                      0.04) : Qt.rgba(
+                                                                      0, 0, 0,
+                                                                      0.02)) : "transparent"
+                border.color: (Material.theme === Material.Dark) ? Qt.rgba(
+                                                                       1, 1, 1,
+                                                                       0.08) : Qt.rgba(
+                                                                       0, 0, 0,
+                                                                       0.06)
                 layer.enabled: true
+
+                property int rowIndex: index
 
                 // Filter: collapse non-matching rows
                 readonly property bool matches: {
-                    if (!filterText || filterText.length === 0) return true
+                    if (!filterText || filterText.length === 0)
+                        return true
                     var n = (model.name || "").toString()
-                    return n.toLowerCase().indexOf(filterText.toLowerCase()) !== -1
+                    return n.toLowerCase().indexOf(
+                                filterText.toLowerCase()) !== -1
                 }
-                height: matches ? 55 : 0
-                visible: matches
+                height: (matches && isPrimary) ? 55 : 0
+                visible: matches && isPrimary
 
                 RowLayout {
                     anchors.fill: parent
@@ -254,10 +297,9 @@ Item {
                             sourceSize.height: 20
                         }
                         Image {
-                            visible: !model.statusUnknown && (!model.online || !model.paired)
-                            source: !model.online
-                                    ? ((Material.theme !== Material.Dark) ? "qrc:/res/warning_FILL1_wght300_GRAD200_opsz24-dark.svg" : "qrc:/res/warning_FILL1_wght300_GRAD200_opsz24.svg")
-                                    : ((Material.theme !== Material.Dark) ? "qrc:/res/baseline-lock-24px-dark.svg" : "qrc:/res/baseline-lock-24px.svg")
+                            visible: !model.statusUnknown && (!model.online
+                                                              || !model.paired)
+                            source: !model.online ? ((Material.theme !== Material.Dark) ? "qrc:/res/warning_FILL1_wght300_GRAD200_opsz24-dark.svg" : "qrc:/res/warning_FILL1_wght300_GRAD200_opsz24.svg") : ((Material.theme !== Material.Dark) ? "qrc:/res/baseline-lock-24px-dark.svg" : "qrc:/res/baseline-lock-24px.svg")
                             sourceSize.width: 16
                             sourceSize.height: 16
                         }
@@ -279,8 +321,7 @@ Item {
                         Layout.preferredWidth: cols.statusW
                         Layout.minimumWidth: cols.statusW
                         Layout.maximumWidth: cols.statusW
-                        text: model.statusUnknown ? qsTr("Checking…")
-                                                  : (model.online ? qsTr("Online") : qsTr("Offline"))
+                        text: model.statusUnknown ? qsTr("Checking…") : (model.online ? qsTr("Online") : qsTr("Offline"))
                         color: model.online ? ((Material.theme !== Material.Dark) ? "#81C784" : "#2e7d32") : ((Material.theme !== Material.Dark) ? "#EF9A9A" : "#b71c1c")
                         elide: Label.ElideRight
                         verticalAlignment: Text.AlignVCenter
@@ -313,11 +354,22 @@ Item {
 
                         Button {
                             text: qsTr("Apps")
-                            enabled: model.online && model.paired
+                            enabled: online && paired
                             onClicked: {
-                                var component = Qt.createComponent("AppView.qml")
-                                var appView = component.createObject(stackView, {"computerIndex": index, "objectName": model.name, "showHiddenGames": true})
-                                stackView.push(appView)
+                                const component = Qt.createComponent(
+                                                    "AppView.qml")
+                                if (component.status === Component.Ready) {
+                                    const appView = component.createObject(
+                                                      parentStackView(), {
+                                                          "computerIndex": index,
+                                                          "objectName": name,
+                                                          "showHiddenGames": true
+                                                      })
+                                    parentStackView().push(appView)
+                                } else if (component.status === Component.Error) {
+                                    console.log("Failed to load AppView.qml:",
+                                                component.errorString())
+                                }
                             }
                         }
                         Button {
@@ -329,62 +381,122 @@ Item {
                         Button {
                             id: moreBtn
                             text: qsTr("More")
-                            onClicked: rowMenu.popup(moreBtn, Qt.point(0, moreBtn.height))
+                            onClicked: rowMenu.popup(moreBtn,
+                                                     Qt.point(0,
+                                                              moreBtn.height))
                         }
                         Menu {
                             id: rowMenu
+                            // capture the delegate row index for nested scopes
+                            property int rowIndex: index
 
-                            // New: Pair action (disabled if already paired or status unknown)
+                            // Launch all displays via CLI
+                            MenuItem {
+                                text: qsTr("Launch All Displays")
+                                enabled: model.online && model.paired
+                                         && model.displayCount > 0
+                                         && !model.statusUnknown
+                                onTriggered: {
+                                    // 'index' here is the ListView row index
+                                    const started = computerModel.launchAllDisplaysViaCli(index)
+                                    if (!started || started <= 0) {
+                                        console.log("LaunchAllDisplays: nothing started for row",
+                                                    index)
+                                    } else {
+                                        console.log("Launched displays count: ", started)
+                                    }
+                                }
+                            }
+
+                            // Launch per display: use the role `displayNames` directly
+                            Menu {
+                                title: qsTr("Launch (Select Display)")
+                                enabled: online && paired && displayCount > 0
+                                         && !statusUnknown
+
+                                Repeater {
+                                    model: displayNames ?? []
+                                    delegate: MenuItem {
+                                        text: modelData
+                                        // Repeater's `index` is the display index here
+                                        onTriggered: {
+
+                                            const ok = computerModel.launchDisplayViaCli(
+                                                         rowIndex, model.index)
+                                            if (!ok) {
+                                                console.log("Launch display failed at row",
+                                                            index, "display",
+                                                            model.index)
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                            MenuSeparator {}
+
                             MenuItem {
                                 text: qsTr("Pair…")
-                                enabled: model.online && !model.paired && !model.statusUnknown
+                                enabled: online && !paired && !statusUnknown
                                 onTriggered: {
-                                    if (!model.serverSupported) {
-                                        errorDialog.text = qsTr("The version of GeForce Experience on %1 is not supported by this build of Ocular. You must update Ocular to stream from %1.").arg(model.name)
+                                    if (!serverSupported) {
+                                        errorDialog.text = qsTr(
+                                                    "The version of GeForce Experience on %1 is not supported by this build of Ocular. You must update Ocular to stream from %1.").arg(
+                                                    name)
                                         errorDialog.helpText = ""
                                         errorDialog.open()
-                                    } else if (model.paired) {
-                                        var component = Qt.createComponent("AppView.qml")
-                                        var appView = component.createObject(stackView, {"computerIndex": index, "objectName": model.name})
-                                        stackView.push(appView)
+                                    } else if (paired) {
+                                        const component = Qt.createComponent(
+                                                            "AppView.qml")
+                                        if (component.status === Component.Ready) {
+                                            const appView = component.createObject(
+                                                              parentStackView(
+                                                                  ), {
+                                                                  "computerIndex": rowIndex,
+                                                                  "objectName": name
+                                                              })
+                                            parentStackView().push(appView)
+                                        } else if (component.status === Component.Error) {
+                                            console.log("Failed to load AppView.qml:",
+                                                        component.errorString())
+                                        }
                                     } else {
                                         var pin = computerModel.generatePinString()
-                                        computerModel.pairComputer(index, pin)
+                                        computerModel.pairComputer(rowIndex,
+                                                                   pin)
                                         pairDialog.pin = pin
                                         pairDialog.open()
                                     }
                                 }
                             }
 
-                            MenuSeparator {}
-
                             MenuItem {
                                 text: qsTr("Rename…")
                                 onTriggered: {
-                                    renamePcDialog.pcIndex = index
-                                    renamePcDialog.originalName = model.name
+                                    renamePcDialog.pcIndex = rowIndex
+                                    renamePcDialog.originalName = name
                                     renamePcDialog.open()
                                 }
                             }
                             MenuItem {
                                 text: qsTr("Delete…")
                                 onTriggered: {
-                                    deletePcDialog.pcIndex = index
-                                    deletePcDialog.pcName = model.name
+                                    deletePcDialog.pcIndex = rowIndex
+                                    deletePcDialog.pcName = name
                                     deletePcDialog.open()
                                 }
                             }
                             MenuItem {
                                 text: qsTr("View Details")
                                 onTriggered: {
-                                    showPcDetailsDialog.pcDetails = model.details
+                                    showPcDetailsDialog.pcDetails = details
                                     showPcDetailsDialog.open()
                                 }
                             }
                             MenuItem {
                                 text: qsTr("Test")
                                 onTriggered: {
-                                    computerModel.testConnectionForComputer(index)
+                                    computerModel.testConnectionForComputer(
+                                                rowIndex)
                                     testConnectionDialog.open()
                                 }
                             }
@@ -396,15 +508,18 @@ Item {
                 MouseArea {
                     anchors.fill: parent
                     acceptedButtons: Qt.RightButton
-                    onClicked: rowMenu.popup(rowRect, Qt.point(mouse.x, mouse.y))
+                    onClicked: rowMenu.popup(rowRect,
+                                             Qt.point(mouse.x, mouse.y))
                 }
             }
-
         }
     }
 
     // Hidden StackView used by your navigation to AppView.qml (kept for compatibility)
-    StackView { id: stackView; visible: false }
+    StackView {
+        id: stackView
+        visible: false
+    }
 
     // === dialogs preserved from your original file ===
     ErrorMessageDialog {
@@ -416,18 +531,21 @@ Item {
         id: pairDialog
         modal: true
         closePolicy: Popup.CloseOnEscape
-        property string pin : "0000"
+        property string pin: "0000"
         imageSrc: (Material.theme !== Material.Dark) ? "qrc:/res/baseline-error_outline-24px-dark.svg" : "qrc:/res/baseline-error_outline-24px.svg"
-        text: qsTr("Please enter %1 on your host PC. This dialog will close when pairing is completed.").arg(pin)+"\n\n"+
-             qsTr("If your host PC is running Sunshine, navigate to the Sunshine web UI to enter the PIN.")
+        text: qsTr("Please enter %1 on your host PC. This dialog will close when pairing is completed.").arg(
+                  pin) + "\n\n" + qsTr(
+                  "If your host PC is running Sunshine, navigate to the Sunshine web UI to enter the PIN.")
         standardButtons: Dialog.Cancel
-        onRejected: { /* TODO: cancel pairing if supported */ }
+        onRejected: {
+
+            /* TODO: cancel pairing if supported */ }
     }
 
     NavigableMessageDialog {
         id: deletePcDialog
-        property int pcIndex : -1
-        property string pcName : ""
+        property int pcIndex: -1
+        property string pcName: ""
         imageSrc: (Material.theme !== Material.Dark) ? "qrc:/res/baseline-error_outline-24px-dark.svg" : "qrc:/res/baseline-error_outline-24px.svg"
         text: qsTr("Are you sure you want to remove '%1'?").arg(pcName)
         standardButtons: Dialog.Yes | Dialog.No
@@ -440,7 +558,9 @@ Item {
         standardButtons: Dialog.Ok
 
         onAboutToShow: {
-            testConnectionDialog.text = qsTr("Ocular is testing your network connection to determine if any required ports are blocked.") + "\n\n" + qsTr("This may take a few seconds…")
+            testConnectionDialog.text = qsTr(
+                        "Ocular is testing your network connection to determine if any required ports are blocked.") + "\n\n" + qsTr(
+                        "This may take a few seconds…")
             showSpinner = true
         }
 
@@ -474,13 +594,13 @@ Item {
             if (result === -1) {
                 text = qsTr("The network test could not be performed because none of Ocular's connection testing servers were reachable from this PC. Check your Internet connection or try again later.")
                 imageSrc = (Material.theme !== Material.Dark) ? "qrc:/res/baseline-warning-24px-dark.svg" : "qrc:/res/baseline-warning-24px.svg"
-            }
-            else if (result === 0) {
-                text = qsTr("This network does not appear to be blocking Ocular. If you still have trouble connecting, check your PC's firewall settings.") + "\n\n" + qsTr("If you are trying to stream over the Internet, install the Ocular Internet Hosting Tool on your gaming PC and run the included Internet Streaming Tester to check your gaming PC's Internet connection.")
+            } else if (result === 0) {
+                text = qsTr("This network does not appear to be blocking Ocular. If you still have trouble connecting, check your PC's firewall settings.") + "\n\n" + qsTr(
+                            "If you are trying to stream over the Internet, install the Ocular Internet Hosting Tool on your gaming PC and run the included Internet Streaming Tester to check your gaming PC's Internet connection.")
                 imageSrc = (Material.theme !== Material.Dark) ? "qrc:/res/baseline-check_circle_outline-24px-dark.svg" : "qrc:/res/baseline-check_circle_outline-24px.svg"
-            }
-            else {
-                text = qsTr("Your PC's current network connection seems to be blocking Ocular. Streaming over the Internet may not work while connected to this network.") + "\n\n" + qsTr("The following network ports were blocked:") + "\n"
+            } else {
+                text = qsTr("Your PC's current network connection seems to be blocking Ocular. Streaming over the Internet may not work while connected to this network.") + "\n\n" + qsTr(
+                            "The following network ports were blocked:") + "\n"
                 text += blockedPorts
                 imageSrc = (Material.theme !== Material.Dark) ? "qrc:/res/baseline-error_outline-24px-dark.svg" : "qrc:/res/baseline-error_outline-24px.svg"
             }
@@ -492,7 +612,7 @@ Item {
         id: renamePcDialog
         property string label: qsTr("Enter the new name for this PC:")
         property string originalName
-        property int pcIndex : -1;
+        property int pcIndex: -1
 
         standardButtons: Dialog.Ok | Dialog.Cancel
 
@@ -523,7 +643,7 @@ Item {
 
     NavigableMessageDialog {
         id: showPcDetailsDialog
-        property string pcDetails : "";
+        property string pcDetails: ""
         text: showPcDetailsDialog.pcDetails
         imageSrc: (Material.theme !== Material.Dark) ? "qrc:/res/baseline-help_outline-24px-dark.svg" : "qrc:/res/baseline-help_outline-24px.svg"
         standardButtons: Dialog.Ok

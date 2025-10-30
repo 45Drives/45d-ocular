@@ -6,6 +6,7 @@
 #include <QHostInfo>
 #include <QNetworkInterface>
 #include <QNetworkProxy>
+#include <QXmlStreamReader>
 
 #define SER_NAME "hostname"
 #define SER_UUID "uuid"
@@ -22,6 +23,14 @@
 #define SER_SRVCERT "srvcert"
 #define SER_CUSTOMNAME "customname"
 #define SER_NVIDIASOFTWARE "nvidiasw"
+
+// New: multi-display persistence keys
+#define SER_DISPLAYS "displays"
+#define SER_D_NAME   "d_name"
+#define SER_D_ADDR   "d_addr"
+#define SER_D_PORT   "d_port"
+#define SER_D_HTTPS  "d_https"
+#define SER_D_ID     "d_id"
 
 NvComputer::NvComputer(QSettings& settings)
 {
@@ -51,6 +60,21 @@ NvComputer::NvComputer(QSettings& settings)
     settings.endArray();
     sortAppList();
 
+    // Load persisted display endpoints (if any)
+    int dCount = settings.beginReadArray(SER_DISPLAYS);
+    for (int i = 0; i < dCount; ++i) {
+        settings.setArrayIndex(i);
+        NvDisplayEndpoint ep;
+        ep.name = settings.value(SER_D_NAME, QString("Display %1").arg(i+1)).toString();
+        ep.http = NvAddress(settings.value(SER_D_ADDR).toString(),
+                            settings.value(SER_D_PORT, QVariant(DEFAULT_HTTP_PORT)).toUInt());
+        ep.httpsPort = settings.value(SER_D_HTTPS, QVariant(DEFAULT_HTTPS_PORT)).toUInt();
+        ep.displayId = settings.value(SER_D_ID, 0).toUInt();
+        if (!ep.http.isNull())
+            displayEndpoints.push_back(ep);
+    }
+    settings.endArray();
+
     this->currentGameId = 0;
     this->pairState = PS_UNKNOWN;
     this->state = CS_UNKNOWN;
@@ -63,6 +87,20 @@ NvComputer::NvComputer(QSettings& settings)
     this->isSupportedServerVersion = true;
     this->externalPort = this->remoteAddress.port();
     this->activeHttpsPort = 0;
+
+    // Back-compat: synthesize one endpoint if none stored
+    if (displayEndpoints.isEmpty()) {
+        NvDisplayEndpoint ep;
+        ep.name = "Display 1";
+        NvAddress base = activeAddress.isNull()
+                             ? (localAddress.isNull() ? remoteAddress : localAddress)
+                             : activeAddress;
+        ep.http = base.isNull() ? NvAddress(remoteAddress.address(), externalPort) : base;
+        ep.httpsPort = activeHttpsPort ? activeHttpsPort : DEFAULT_HTTPS_PORT;
+        ep.displayId = 0;
+        if (!ep.http.isNull())
+            displayEndpoints.push_back(ep);
+    }
 }
 
 void NvComputer::setRemoteAddress(QHostAddress address)
@@ -92,6 +130,20 @@ void NvComputer::serialize(QSettings& settings, bool serializeApps) const
     settings.setValue(SER_MANUALPORT, manualAddress.port());
     settings.setValue(SER_SRVCERT, serverCert.toPem());
     settings.setValue(SER_NVIDIASOFTWARE, isNvidiaServerSoftware);
+
+    // Persist multi-display endpoints
+    settings.remove(SER_DISPLAYS);
+    settings.beginWriteArray(SER_DISPLAYS);
+    for (int i = 0; i < displayEndpoints.size(); ++i) {
+        settings.setArrayIndex(i);
+        const auto& ep = displayEndpoints[i];
+        settings.setValue(SER_D_NAME, ep.name);
+        settings.setValue(SER_D_ADDR, ep.http.address());
+        settings.setValue(SER_D_PORT, ep.http.port());
+        settings.setValue(SER_D_HTTPS, ep.httpsPort);
+        settings.setValue(SER_D_ID, ep.displayId);
+    }
+    settings.endArray();
 
     // Avoid deleting an existing applist if we couldn't get one
     if (!appList.isEmpty() && serializeApps) {
@@ -123,7 +175,7 @@ bool NvComputer::isEqualSerialized(const NvComputer &that) const
 void NvComputer::sortAppList()
 {
     std::stable_sort(appList.begin(), appList.end(), [](const NvApp& app1, const NvApp& app2) {
-       return app1.name.toLower() < app2.name.toLower();
+        return app1.name.toLower() < app2.name.toLower();
     });
 }
 
@@ -166,9 +218,9 @@ NvComputer::NvComputer(NvHTTP& http, QString serverInfo)
     this->displayModes = NvHTTP::getDisplayModeList(serverInfo);
     std::stable_sort(this->displayModes.begin(), this->displayModes.end(),
                      [](const NvDisplayMode& mode1, const NvDisplayMode& mode2) {
-        return (uint64_t)mode1.width * mode1.height * mode1.refreshRate <
-                (uint64_t)mode2.width * mode2.height * mode2.refreshRate;
-    });
+                         return (uint64_t)mode1.width * mode1.height * mode1.refreshRate <
+                                (uint64_t)mode2.width * mode2.height * mode2.refreshRate;
+                     });
 
     // We can get an IPv4 loopback address if we're using the GS IPv6 Forwarder
     this->localAddress = NvAddress(NvHTTP::getXmlString(serverInfo, "LocalIP"), http.httpPort());
@@ -202,7 +254,7 @@ NvComputer::NvComputer(NvHTTP& http, QString serverInfo)
     this->isNvidiaServerSoftware = NvHTTP::getXmlString(serverInfo, "state").contains("MJOLNIR");
 
     this->pairState = NvHTTP::getXmlString(serverInfo, "PairStatus") == "1" ?
-                PS_PAIRED : PS_NOT_PAIRED;
+                          PS_PAIRED : PS_NOT_PAIRED;
     this->currentGameId = NvHTTP::getCurrentGame(serverInfo);
     this->appVersion = NvHTTP::getXmlString(serverInfo, "appversion");
     this->gfeVersion = NvHTTP::getXmlString(serverInfo, "GfeVersion");
@@ -211,6 +263,45 @@ NvComputer::NvComputer(NvHTTP& http, QString serverInfo)
     this->state = NvComputer::CS_ONLINE;
     this->pendingQuit = false;
     this->isSupportedServerVersion = CompatFetcher::isGfeVersionSupported(this->gfeVersion);
+
+    // Multi-display parsing (best-effort; falls back to single endpoint)
+    // Expected XML (example):
+    // <DisplayEndpoint><Name>Display 1</Name><Address>192.168.1.50</Address><HttpPort>47984</HttpPort><HttpsPort>47989</HttpsPort><DisplayId>0</DisplayId></DisplayEndpoint>
+    QXmlStreamReader xr(serverInfo);
+    while (!xr.atEnd()) {
+        xr.readNextStartElement();
+        if (xr.name() == QStringLiteral("DisplayEndpoint")) {
+            NvDisplayEndpoint ep;
+            while (xr.readNextStartElement()) {
+                if (xr.name() == QStringLiteral("Name")) {
+                    ep.name = xr.readElementText();
+                } else if (xr.name() == QStringLiteral("Address")) {
+                    QString a = xr.readElementText();
+                    ep.http = NvAddress(a, ep.http.port());
+                } else if (xr.name() == QStringLiteral("HttpPort")) {
+                    ep.http = NvAddress(ep.http.address(), (uint16_t)xr.readElementText().toUShort());
+                } else if (xr.name() == QStringLiteral("HttpsPort")) {
+                    ep.httpsPort = (uint16_t)xr.readElementText().toUShort();
+                } else if (xr.name() == QStringLiteral("DisplayId")) {
+                    ep.displayId = xr.readElementText().toUInt();
+                } else {
+                    xr.skipCurrentElement();
+                }
+            }
+            if (!ep.name.length()) ep.name = QString("Display %1").arg(displayEndpoints.size()+1);
+            if (ep.httpsPort == 0) ep.httpsPort = activeHttpsPort ? activeHttpsPort : DEFAULT_HTTPS_PORT;
+            if (ep.http.isNull()) ep.http = http.address();
+            displayEndpoints.push_back(ep);
+        }
+    }
+    if (displayEndpoints.isEmpty()) {
+        NvDisplayEndpoint ep;
+        ep.name = "Display 1";
+        ep.http = http.address();
+        ep.httpsPort = activeHttpsPort ? activeHttpsPort : DEFAULT_HTTPS_PORT;
+        ep.displayId = 0;
+        displayEndpoints.push_back(ep);
+    }
 }
 
 bool NvComputer::wake() const
@@ -264,7 +355,7 @@ bool NvComputer::wake() const
     for (const QNetworkInterface& nic : QNetworkInterface::allInterfaces()) {
         // Ensure the interface is up and skip the loopback adapter
         if ((nic.flags() & QNetworkInterface::IsUp) == 0 ||
-                (nic.flags() & QNetworkInterface::IsLoopBack) != 0) {
+            (nic.flags() & QNetworkInterface::IsLoopBack) != 0) {
             continue;
         }
 
@@ -390,7 +481,7 @@ NvComputer::ReachabilityType NvComputer::getActiveAddressReachability() const
                     qInfo() << "Interface MTU:" << nic.maximumTransmissionUnit();
 
                     if (nic.type() == QNetworkInterface::Virtual ||
-                            nic.type() == QNetworkInterface::Ppp) {
+                        nic.type() == QNetworkInterface::Ppp) {
                         // Treat PPP and virtual interfaces as likely VPNs
                         return ReachabilityType::RI_VPN;
                     }
@@ -524,22 +615,22 @@ bool NvComputer::update(const NvComputer& that)
 
 #define ASSIGN_IF_CHANGED(field)       \
     if (this->field != that.field) {   \
-        this->field = that.field;      \
-        changed = true;                \
+            this->field = that.field;      \
+            changed = true;                \
     }
 
 #define ASSIGN_IF_CHANGED_AND_NONEMPTY(field) \
     if (!that.field.isEmpty() &&              \
-        this->field != that.field) {          \
-        this->field = that.field;             \
-        changed = true;                       \
+                                                  this->field != that.field) {          \
+            this->field = that.field;             \
+            changed = true;                       \
     }
 
 #define ASSIGN_IF_CHANGED_AND_NONNULL(field)  \
     if (!that.field.isNull() &&               \
-        this->field != that.field) {          \
-        this->field = that.field;             \
-        changed = true;                       \
+                                                  this->field != that.field) {          \
+            this->field = that.field;             \
+            changed = true;                       \
     }
 
     if (!hasCustomName) {
@@ -566,6 +657,7 @@ bool NvComputer::update(const NvComputer& that)
     ASSIGN_IF_CHANGED(gpuModel);
     ASSIGN_IF_CHANGED_AND_NONNULL(serverCert);
     ASSIGN_IF_CHANGED_AND_NONEMPTY(displayModes);
+    ASSIGN_IF_CHANGED(displayEndpoints);
 
     if (!that.appList.isEmpty()) {
         // updateAppList() handles merging client-side attributes

@@ -783,7 +783,8 @@ int main(int argc, char *argv[])
             streamParser.parse(app.arguments(), preferences);
             QString host    = streamParser.getHost();
             QString appName = streamParser.getAppName();
-            auto launcher   = new CliStartStream::Launcher(host, appName, preferences, &app);
+            const uint displayId = streamParser.getDisplayId();
+            auto launcher   = new CliStartStream::Launcher(host, appName, displayId, preferences, &app);
             engine.rootContext()->setContextProperty("launcher", launcher);
             break;
         }

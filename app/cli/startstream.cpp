@@ -103,6 +103,10 @@ public:
                     if (isNotStreaming() || isStreamingApp(app)) {
                         m_State = StateStartSession;
                         session = new Session(m_Computer, app, m_Preferences);
+                        if (m_DisplayId >= 0) {
+
+                            session->setTargetDisplayId(m_DisplayId);
+                        }
                         emit q->sessionCreated(app.name, session);
                     } else {
                         emit q->appQuitRequired(getCurrentAppName());
@@ -173,6 +177,7 @@ public:
     Launcher *q_ptr;
     QString m_ComputerName;
     QString m_AppName;
+    uint m_DisplayId;
     StreamingPreferences *m_Preferences;
     ComputerManager *m_ComputerManager;
     ComputerSeeker *m_ComputerSeeker;
@@ -181,7 +186,7 @@ public:
     QTimer *m_TimeoutTimer;
 };
 
-Launcher::Launcher(QString computer, QString app,
+Launcher::Launcher(QString computer, QString app, uint displayId,
                    StreamingPreferences* preferences, QObject *parent)
     : QObject(parent),
       m_DPtr(new LauncherPrivate(this))
@@ -189,6 +194,7 @@ Launcher::Launcher(QString computer, QString app,
     Q_D(Launcher);
     d->m_ComputerName = computer;
     d->m_AppName = app;
+    d->m_DisplayId = displayId;
     d->m_Preferences = preferences;
     d->m_State = StateInit;
     d->m_TimeoutTimer = new QTimer(this);

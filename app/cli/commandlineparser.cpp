@@ -521,6 +521,18 @@ void StreamCommandLineParser::parse(const QStringList &args, StreamingPreference
         parser.showError("App not provided");
     }
     m_AppName = parser.positionalArguments().at(2);
+
+    if (posArgs.length() > 3) {
+        bool ok = false;
+        uint val = parser.positionalArguments().at(3).toUInt(&ok);
+        if (ok) {
+            m_DisplayId = val;
+        } else {
+            m_DisplayId = 0;
+        }
+    } else {
+        m_DisplayId = 0;
+    }
 }
 
 QString StreamCommandLineParser::getHost() const
@@ -532,6 +544,12 @@ QString StreamCommandLineParser::getAppName() const
 {
     return m_AppName;
 }
+
+uint StreamCommandLineParser::getDisplayId() const
+{
+    return m_DisplayId;
+}
+
 
 ListCommandLineParser::ListCommandLineParser()
 {
