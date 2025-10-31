@@ -49,7 +49,8 @@ public:
     Q_INVOKABLE void wakeComputer(int computerIndex);
     Q_INVOKABLE void renameComputer(int computerIndex, QString name);
 
-    Q_INVOKABLE int  groupDisplayCount(int row) const;
+    Q_INVOKABLE int groupDisplayCount(int row) const;
+    Q_INVOKABLE QString webUIURL(int row) const;
 
     // Launch one display of a computer via CLI (detached process)
     Q_INVOKABLE bool launchDisplayViaCli(int computerIndex, int displayIndex);
@@ -71,7 +72,6 @@ private:
     int firstRowForIp(const QString& ip) const;                 // primary row
     int countRowsForIp(const QString& ip) const;                 // number of peers
     QVector<int> rowsForIp(const QString& ip) const;             // all member rows
-    int rowForIpAndDisplayIndex(const QString& ip, int displayIndex) const; // N-th peer
     QVector<int> groupMembersForRow(int row) const;
 
 private:

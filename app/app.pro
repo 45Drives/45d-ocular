@@ -175,6 +175,7 @@ SOURCES += \
     backend/nvaddress.cpp \
     backend/nvapp.cpp \
     cli/pair.cpp \
+    gui/uivalidator.cpp \
     main.cpp \
     backend/computerseeker.cpp \
     backend/identitymanager.cpp \
@@ -216,6 +217,7 @@ HEADERS += \
     backend/nvaddress.h \
     backend/nvapp.h \
     cli/pair.h \
+    gui/uivalidator.h \
     settings/compatfetcher.h \
     settings/mappingfetcher.h \
     utils.h \

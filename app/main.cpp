@@ -48,6 +48,8 @@
 #include "settings/streamingpreferences.h"
 #include "gui/sdlgamepadkeynavigation.h"
 
+#include <gui/uivalidator.h>
+
 #if defined(Q_OS_WIN32)
 #define IS_UNSPECIFIED_HANDLE(x) ((x) == INVALID_HANDLE_VALUE || (x) == NULL)
 
@@ -743,6 +745,9 @@ int main(int argc, char *argv[])
                                                    [](QQmlEngine* qmlEngine, QJSEngine*) -> QObject* {
                                                        return StreamingPreferences::get(qmlEngine);
                                                    });
+    qmlRegisterSingletonType<UIValidator>(
+        "App.Utils", 1, 0, "UIValidator",
+        [](QQmlEngine*, QJSEngine*) -> QObject* { return new UIValidator(); });
 
     // Create the identity manager on the main thread
     IdentityManager::get();

@@ -6,6 +6,18 @@ fail()
 	exit 1
 }
 
+# Adjust version/path as needed
+export QTDIR="$HOME/Qt/6.9.3/gcc_64"
+export PATH="$QTDIR/bin:$PATH"
+
+# Point to the directory that actually contains qmldir files (Qt’s QML modules)
+export QML2_IMPORT_PATH="$QTDIR/qml"
+export QML_IMPORT_PATH="$QTDIR/qml"
+
+# If you use any custom/local QML modules in your repo, add them too:
+export QML2_IMPORT_PATH="$QML2_IMPORT_PATH:$SOURCE_ROOT/app/gui"
+export QML_IMPORT_PATH="$QML_IMPORT_PATH:$SOURCE_ROOT/app/gui"
+
 BUILD_ROOT=$PWD/build
 SOURCE_ROOT=$PWD
 BUILD_FOLDER=$BUILD_ROOT/build-$BUILD_CONFIG
@@ -53,6 +65,7 @@ make install || fail "Make install failed!"
 popd
 
 echo Creating AppImage
+cp "$SOURCE_ROOT/app/deploy/linux/ocular.svg" "$DEPLOY_FOLDER/ocular.svg"
 pushd $INSTALLER_FOLDER
 VERSION=$VERSION linuxdeployqt $DEPLOY_FOLDER/usr/share/applications/com.moonlight_stream.Ocular.desktop -qmake=qmake6 -qmldir=$SOURCE_ROOT/app/gui -appimage -extra-plugins=tls || fail "linuxdeployqt failed!"
 popd

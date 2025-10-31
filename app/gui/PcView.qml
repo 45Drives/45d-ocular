@@ -3,6 +3,7 @@ import QtQuick.Controls
 import QtQuick.Layouts
 import QtQuick.Controls.Material
 
+import App.Utils 1.0
 import ComputerModel 1.0
 import ComputerManager 1.0
 import StreamingPreferences 1.0
@@ -183,17 +184,9 @@ Item {
                 Label {
                     text: qsTr("Paired")
                     font.bold: true
-                    Layout.preferredWidth: cols.pairedW
-                    Layout.minimumWidth: cols.pairedW
-                    Layout.maximumWidth: cols.pairedW
+                    Layout.fillWidth: true
                 }
-                Label {
-                    text: qsTr("Online")
-                    font.bold: true
-                    Layout.preferredWidth: cols.onlineW
-                    Layout.minimumWidth: cols.onlineW
-                    Layout.maximumWidth: cols.onlineW
-                }
+
                 Label {
                     text: qsTr("Actions")
                     font.bold: true
@@ -312,7 +305,7 @@ Item {
                         Label {
                             text: model.name
                             elide: Label.ElideRight
-                            Layout.fillWidth: true
+
                         }
                     }
 
@@ -323,55 +316,42 @@ Item {
                         Layout.maximumWidth: cols.statusW
                         text: model.statusUnknown ? qsTr("Checking…") : (model.online ? qsTr("Online") : qsTr("Offline"))
                         color: model.online ? ((Material.theme !== Material.Dark) ? "#81C784" : "#2e7d32") : ((Material.theme !== Material.Dark) ? "#EF9A9A" : "#b71c1c")
-                        elide: Label.ElideRight
+                        //elide: Label.ElideRight
                         verticalAlignment: Text.AlignVCenter
                     }
 
                     // PAIRED
                     Label {
-                        Layout.preferredWidth: cols.pairedW
-                        Layout.minimumWidth: cols.pairedW
-                        Layout.maximumWidth: cols.pairedW
-                        text: model.paired ? qsTr("Yes") : qsTr("No")
+                        Layout.fillWidth: true
+                        text: model.paired ? qsTr("Yes") : qsTr("(No) Required before Launching")
                         verticalAlignment: Text.AlignVCenter
                     }
 
-                    // ONLINE
-                    Label {
-                        Layout.preferredWidth: cols.onlineW
-                        Layout.minimumWidth: cols.onlineW
-                        Layout.maximumWidth: cols.onlineW
-                        text: model.online ? qsTr("Yes") : qsTr("No")
-                        verticalAlignment: Text.AlignVCenter
-                    }
 
-                    // Column: Actions (keeps your original behaviors)
+                    // Column: Actions
                     RowLayout {
-                        Layout.preferredWidth: cols.actionsW
-                        Layout.minimumWidth: cols.actionsW
-                        Layout.maximumWidth: cols.actionsW
+                        Layout.fillWidth: true
                         spacing: 6
 
                         Button {
-                            text: qsTr("Apps")
-                            enabled: online && paired
+                            text: qsTr("Launch All Displays")
+                            enabled: model.online && model.paired
+                                     && !model.statusUnknown
                             onClicked: {
-                                const component = Qt.createComponent(
-                                                    "AppView.qml")
-                                if (component.status === Component.Ready) {
-                                    const appView = component.createObject(
-                                                      parentStackView(), {
-                                                          "computerIndex": index,
-                                                          "objectName": name,
-                                                          "showHiddenGames": true
-                                                      })
-                                    parentStackView().push(appView)
-                                } else if (component.status === Component.Error) {
-                                    console.log("Failed to load AppView.qml:",
-                                                component.errorString())
+                                const required = computerModel.groupDisplayCount(index)
+                                const available = UIValidator.availableDisplayCount()
+                                if (!UIValidator.verifyDisplayCount(required)) {
+                                    displayWarningPopup.openWithCounts(required, available)
+                                    return
+                                }
+                                // proceed with your launch pathway
+                                const launched = computerModel.launchAllDisplaysViaCli(index)
+                                if (launched <= 0) {
+                                    console.log("No displays launched for row", index)
                                 }
                             }
                         }
+
                         Button {
                             text: qsTr("Wake")
                             enabled: !model.online && model.wakeable
@@ -389,24 +369,6 @@ Item {
                             id: rowMenu
                             // capture the delegate row index for nested scopes
                             property int rowIndex: index
-
-                            // Launch all displays via CLI
-                            MenuItem {
-                                text: qsTr("Launch All Displays")
-                                enabled: model.online && model.paired
-                                         && model.displayCount > 0
-                                         && !model.statusUnknown
-                                onTriggered: {
-                                    // 'index' here is the ListView row index
-                                    const started = computerModel.launchAllDisplaysViaCli(index)
-                                    if (!started || started <= 0) {
-                                        console.log("LaunchAllDisplays: nothing started for row",
-                                                    index)
-                                    } else {
-                                        console.log("Launched displays count: ", started)
-                                    }
-                                }
-                            }
 
                             // Launch per display: use the role `displayNames` directly
                             Menu {
@@ -464,6 +426,7 @@ Item {
                                         computerModel.pairComputer(rowIndex,
                                                                    pin)
                                         pairDialog.pin = pin
+                                        pairDialog.webUIURL = computerModel.webUIURL(rowIndex)
                                         pairDialog.open()
                                     }
                                 }
@@ -488,7 +451,7 @@ Item {
                             MenuItem {
                                 text: qsTr("View Details")
                                 onTriggered: {
-                                    showPcDetailsDialog.pcDetails = details
+                                    showPcDetailsDialog.pcDetails = model.
                                     showPcDetailsDialog.open()
                                 }
                             }
@@ -531,15 +494,33 @@ Item {
         id: pairDialog
         modal: true
         closePolicy: Popup.CloseOnEscape
-        property string pin: "0000"
-        imageSrc: (Material.theme !== Material.Dark) ? "qrc:/res/baseline-error_outline-24px-dark.svg" : "qrc:/res/baseline-error_outline-24px.svg"
-        text: qsTr("Please enter %1 on your host PC. This dialog will close when pairing is completed.").arg(
-                  pin) + "\n\n" + qsTr(
-                  "If your host PC is running Sunshine, navigate to the Sunshine web UI to enter the PIN.")
-        standardButtons: Dialog.Cancel
-        onRejected: {
 
-            /* TODO: cancel pairing if supported */ }
+        // set this elsewhere before opening the dialog
+        property string webUIURL: ""   // e.g. "http://192.168.1.23:47990"
+        property string pin: "0000"
+
+        // Replace the plain "text:" with a rich Label as the content
+        contentItem: Label {
+            wrapMode: Text.WordWrap
+            textFormat: Text.RichText
+            text: {
+                var lines = [];
+                lines.push(qsTr("Please enter %1 on your host PC. This dialog will close when pairing is completed.")
+                           .arg(pairDialog.pin));
+                if (pairDialog.webUIURL.length > 0) {
+                    lines.push(qsTr('If your host PC is running Sunshine, open the web UI at <a href="%1/pin">%1/pin</a> and enter the PIN.')
+                               .arg(pairDialog.webUIURL));
+                } else {
+                    lines.push(qsTr("If your host PC is running Sunshine, navigate to the Sunshine web UI to enter the PIN."));
+                }
+                return lines.join("<br><br>");
+            }
+            onLinkActivated: function(link) {
+                Qt.openUrlExternally(link);
+            }
+        }
+
+        standardButtons: Dialog.Cancel
     }
 
     NavigableMessageDialog {
@@ -648,4 +629,6 @@ Item {
         imageSrc: (Material.theme !== Material.Dark) ? "qrc:/res/baseline-help_outline-24px-dark.svg" : "qrc:/res/baseline-help_outline-24px.svg"
         standardButtons: Dialog.Ok
     }
+
+    WarningPopup { id: displayWarningPopup }
 }

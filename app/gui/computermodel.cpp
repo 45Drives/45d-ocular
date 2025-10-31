@@ -68,12 +68,6 @@ QVector<int> ComputerModel::rowsForIp(const QString& ip) const
     return out;
 }
 
-int ComputerModel::rowForIpAndDisplayIndex(const QString& ip, int displayIndex) const
-{
-    auto rows = rowsForIp(ip);
-    if (displayIndex < 0 || displayIndex >= rows.size()) return -1;
-    return rows[displayIndex];
-}
 
 // ===== model roles =====
 QVariant ComputerModel::data(const QModelIndex& index, int role) const
@@ -246,6 +240,15 @@ static QString withPort(const QString& host, int port)
 
     // IPv4 or hostname without port.
     return QStringLiteral("%1:%2").arg(host).arg(port);
+}
+
+QString ComputerModel::webUIURL(int row) const
+{
+    NvComputer* c = m_Computers[row];
+
+    const QString baseHost = c->activeAddress.address();
+    const QString host = withPort(baseHost, c->activeAddress.port() + 1);
+    return QStringLiteral("%1%2").arg("https://").arg(host);
 }
 
 bool ComputerModel::launchDisplayViaCli(int computerIndex, int displayIndex)
