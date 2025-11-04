@@ -26,6 +26,7 @@ public:
         IpRole,
         IsPrimaryRole,
         DisplayCountRole,
+        LaunchableDisplayCountRole,
         DisplayNamesRole,
     };
     Q_ENUM(Roles)
@@ -50,6 +51,8 @@ public:
     Q_INVOKABLE void renameComputer(int computerIndex, QString name);
 
     Q_INVOKABLE int groupDisplayCount(int row) const;
+    Q_INVOKABLE int launchableGroupDisplayCount(int row) const;
+
     Q_INVOKABLE QString webUIURL(int row) const;
 
     // Launch one display of a computer via CLI (detached process)

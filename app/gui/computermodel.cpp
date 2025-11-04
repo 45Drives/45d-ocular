@@ -132,13 +132,19 @@ QVariant ComputerModel::data(const QModelIndex& index, int role) const
 
     case IsPrimaryRole: {
         // Only the first row for a given IP is primary
+        if (ip.isEmpty()) return true;
         const int first = firstRowForIp(ip);
         return first == row;
     }
 
     case DisplayCountRole: {
         // Count rows sharing this IP
-        return countRowsForIp(ip);
+        return groupDisplayCount(row);
+    }
+
+    case LaunchableDisplayCountRole: {
+        // Count rows sharing this IP
+        return launchableGroupDisplayCount(row);
     }
 
     case DisplayNamesRole: {
@@ -180,6 +186,7 @@ QHash<int, QByteArray> ComputerModel::roleNames() const
     names[IpRole]              = "ip";
     names[IsPrimaryRole]       = "isPrimary";
     names[DisplayCountRole]    = "displayCount";
+    names[LaunchableDisplayCountRole]    = "launchableDisplayCountRole";
     names[DisplayNamesRole]    = "displayNames";
     return names;
 }
@@ -276,11 +283,7 @@ bool ComputerModel::launchDisplayViaCli(int computerIndex, int displayIndex)
     args << QStringLiteral("stream")
          << host
          << appName
-         << QString::number(displayId)
-         << QStringLiteral("--video-codec") << QStringLiteral("HEVC")
-         << QStringLiteral("--video-decoder") << QStringLiteral("hardware")
-         << QStringLiteral("--capture-system-keys") << QStringLiteral("always")
-         << QStringLiteral("--vsync");
+         << QString::number(displayId);
 
     bool ok = QProcess::startDetached(exe, args);
     if (!ok) {
@@ -298,12 +301,12 @@ QVector<int> ComputerModel::groupMembersForRow(int row) const
     if (row < 0 || row >= m_Computers.size()) return out;
 
     const NvComputer* base = m_Computers[row];
-    const QString ip = base->activeAddress.address();
+    const QString ip = base->localAddress.address();
 
     // Collect all rows with the same IP
     for (int i = 0; i < m_Computers.size(); ++i) {
         const NvComputer* c = m_Computers[i];
-        if (c->activeAddress.address() == ip) {
+        if (c->localAddress.address() == ip) {
             out.push_back(i);
         }
     }
@@ -322,16 +325,32 @@ QVector<int> ComputerModel::groupMembersForRow(int row) const
 
 int ComputerModel::groupDisplayCount(int row) const
 {
-    return groupMembersForRow(row).size();
+    return groupMembersForRow(row).count();
 }
+
+int ComputerModel::launchableGroupDisplayCount(int row) const
+{
+    QVector<int> displays = groupMembersForRow(row);
+    displays.removeIf([this](int idx) {
+        return m_Computers[idx]->pairState != NvComputer::PS_PAIRED;
+    });
+
+    return displays.count();
+}
+
+
 
 int ComputerModel::launchAllDisplaysViaCli(int row)
 {
-    const QVector<int> members = groupMembersForRow(row);
+    QVector<int> members = groupMembersForRow(row);
+    members.removeIf([this](int idx) {
+        return m_Computers[idx]->pairState != NvComputer::PS_PAIRED;
+    });
+
     if (members.isEmpty()) return 0;
 
     int launched = 0;
-    for (int r : members) {
+    for (int r : std::as_const(members)) {
         if (launchDisplayViaCli(r, launched)) {
             ++launched;
         }
@@ -350,6 +369,8 @@ void ComputerModel::deleteComputer(int computerIndex)
     m_Computers.removeAt(computerIndex);
 
     endRemoveRows();
+
+    handleComputerStateChanged(NULL);
 }
 
 class DeferredWakeHostTask : public QRunnable
@@ -427,9 +448,9 @@ void ComputerModel::handleComputerStateChanged(NvComputer* computer)
         m_Computers = newList;
         endResetModel();
     } else {
-        const int idx = m_Computers.indexOf(computer);
-        if (idx >= 0) {
-            emit dataChanged(createIndex(idx, 0), createIndex(idx, 0));
+        // Grouping/primary status might shift across rows; refresh all
+        if (rowCount() > 0) {
+            emit dataChanged(index(0, 0), index(rowCount() - 1, 0));
         }
     }
 }
